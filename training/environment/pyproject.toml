@@ -1,0 +1,27 @@
+[project]
+name = "herdproof-cuda-training"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "ultralytics==8.3.200",
+  "torch==2.8.0+cu126",
+  "torchvision==0.23.0+cu126",
+  "numpy==2.2.6",
+  "opencv-python==4.12.0.88",
+  "pillow==11.3.0",
+  "scipy==1.16.1",
+  "matplotlib==3.10.6",
+]
+
+[tool.uv]
+exclude-newer = "2026-08-22T00:00:00Z"
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu126" }
+torchvision = { index = "pytorch-cu126" }

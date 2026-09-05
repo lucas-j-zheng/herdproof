@@ -1,0 +1,21 @@
+{
+  "dataset": {
+    "url": "https://zenodo.org/api/records/11048412/files/Cattle_drone_images_042024.zip/content",
+    "filename": "Cattle_drone_images_042024.zip",
+    "bytes": 16586848207,
+    "md5": "c18911fb11cb58741b9cfa16516ca8cd",
+    "doi": "10.5281/zenodo.11048412",
+    "attribution": "Louise Helary and Adrien Lebreton / Institut de l'Elevage, ICAERUS grazing cows v2",
+    "license": "CC-BY-4.0"
+  },
+  "weights": {
+    "yolov8n": {
+      "url": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8n.pt",
+      "sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36"
+    },
+    "yolov8s": {
+      "url": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8s.pt",
+      "sha256": "1f47a78bf100391c2a140b7ac73a1caae18c32779be7d310658112f7ac9aa78a"
+    }
+  }
+}
