@@ -54,6 +54,8 @@ def configure_runtime(cache: Path):
     os.environ["YOLO_AUTOINSTALL"] = "false"
     os.environ["YOLO_OFFLINE"] = "true"
     os.environ["WANDB_DISABLED"] = "true"
+    # Set before the CUDA preflight creates a cuBLAS handle, for deterministic training.
+    os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
     os.environ.setdefault("OMP_NUM_THREADS", "4")
     # Upstream checks for Arial even with plots=False. Use a bundled font alias so it never downloads one.
     import matplotlib
