@@ -1,0 +1,270 @@
+{
+  "evaluation_images": 92,
+  "evaluation_flights": 17,
+  "reference_audit": {
+    "status": "provisional_incomplete_reference_labels",
+    "audited_at": "2026-09-05",
+    "discovered_after": "Completed fixed baseline and fine-tune evaluation, during fine-tune error-overlay inspection",
+    "confirmed_examples": [
+      {
+        "image_id": "161ccda3efc6",
+        "split": "evaluation",
+        "yolo_annotations": 0,
+        "voc_annotations": 0,
+        "yolo_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "image_sha256": "1114d23085fca87feb11f733fec00d41ed481dd32c3ecdb54cf264311031735c",
+        "finding": "Full-resolution visual inspection shows multiple cattle. The correctly named source VOC and YOLO files both contain no objects. An empty annotation file is not evidence of an empty scene.",
+        "evidence": "evidence/finetuned/161ccda3efc6.jpg"
+      }
+    ],
+    "additional_check": "Inspected all 88 downloaded VOC files for object-count agreement with YOLO. One includes an extra non-cow red_squirrel object; cow counts agree. The confirmed missing-label case is present in both formats, so switching formats does not resolve it.",
+    "scope": "Targeted visual audit, not complete relabeling. The prevalence of missing annotations and effects on training/calibration are unknown.",
+    "metrics_interpretation": "Retain frozen scores as agreement with supplied annotations. Do not treat precision, count error, negative-scene false alarms, or correction-work estimates as verified real-world accuracy or workload. Recall is recall of supplied annotations only. Human scores against these references are provisional too.",
+    "next_validation": "Independently annotate a fresh small flight-separated test set, resolve ambiguous animals and visibility rules, audit training/calibration labels, then rerun a newly frozen experiment. Do not selectively remove troublesome test images or tune on relabeled evaluation images."
+  },
+  "methods": {
+    "COCO whole image": {
+      "threshold": 0.1,
+      "summary": {
+        "images": 92,
+        "flights": 17,
+        "annotated_observations": 1065,
+        "predicted_observations": 10,
+        "tp": 5,
+        "fp": 5,
+        "fn": 1060,
+        "precision": 0.5,
+        "recall": 0.004694835680751174,
+        "count_mae": 11.467391304347826,
+        "count_bias": -11.467391304347826,
+        "exact_count_images": 44,
+        "exact_count_rate": 0.4782608695652174,
+        "correction_operations": 1065,
+        "correction_operations_per_annotated_animal": 1.0,
+        "negative_images": 43,
+        "negative_images_with_false_alarms": 0,
+        "mean_inference_seconds": 0.19205562497929507
+      },
+      "positive_only": {
+        "images": 49,
+        "flights": 17,
+        "annotated_observations": 1065,
+        "predicted_observations": 10,
+        "tp": 5,
+        "fp": 5,
+        "fn": 1060,
+        "precision": 0.5,
+        "recall": 0.004694835680751174,
+        "count_mae": 21.53061224489796,
+        "count_bias": -21.53061224489796,
+        "exact_count_images": 1,
+        "exact_count_rate": 0.02040816326530612,
+        "correction_operations": 1065,
+        "correction_operations_per_annotated_animal": 1.0,
+        "negative_images": 0,
+        "negative_images_with_false_alarms": 0
+      }
+    },
+    "COCO tiled": {
+      "threshold": 0.1,
+      "summary": {
+        "images": 92,
+        "flights": 17,
+        "annotated_observations": 1065,
+        "predicted_observations": 43,
+        "tp": 24,
+        "fp": 19,
+        "fn": 1041,
+        "precision": 0.5581395348837209,
+        "recall": 0.022535211267605635,
+        "count_mae": 11.130434782608695,
+        "count_bias": -11.108695652173912,
+        "exact_count_images": 43,
+        "exact_count_rate": 0.4673913043478261,
+        "correction_operations": 1060,
+        "correction_operations_per_annotated_animal": 0.9953051643192489,
+        "negative_images": 43,
+        "negative_images_with_false_alarms": 1,
+        "mean_inference_seconds": 0.8292312454457557
+      },
+      "positive_only": {
+        "images": 49,
+        "flights": 17,
+        "annotated_observations": 1065,
+        "predicted_observations": 42,
+        "tp": 24,
+        "fp": 18,
+        "fn": 1041,
+        "precision": 0.5714285714285714,
+        "recall": 0.022535211267605635,
+        "count_mae": 20.877551020408163,
+        "count_bias": -20.877551020408163,
+        "exact_count_images": 1,
+        "exact_count_rate": 0.02040816326530612,
+        "correction_operations": 1059,
+        "correction_operations_per_annotated_animal": 0.9943661971830986,
+        "negative_images": 0,
+        "negative_images_with_false_alarms": 0
+      }
+    },
+    "Cattle fine-tune, tiled": {
+      "threshold": 0.5,
+      "summary": {
+        "images": 92,
+        "flights": 17,
+        "annotated_observations": 1065,
+        "predicted_observations": 1137,
+        "tp": 724,
+        "fp": 413,
+        "fn": 341,
+        "precision": 0.6367634124890061,
+        "recall": 0.67981220657277,
+        "count_mae": 3.891304347826087,
+        "count_bias": 0.782608695652174,
+        "exact_count_images": 14,
+        "exact_count_rate": 0.15217391304347827,
+        "correction_operations": 754,
+        "correction_operations_per_annotated_animal": 0.707981220657277,
+        "negative_images": 43,
+        "negative_images_with_false_alarms": 32,
+        "mean_inference_seconds": 2.045664934795755
+      },
+      "positive_only": {
+        "images": 49,
+        "flights": 17,
+        "annotated_observations": 1065,
+        "predicted_observations": 1020,
+        "tp": 724,
+        "fp": 296,
+        "fn": 341,
+        "precision": 0.7098039215686275,
+        "recall": 0.67981220657277,
+        "count_mae": 4.918367346938775,
+        "count_bias": -0.9183673469387755,
+        "exact_count_images": 3,
+        "exact_count_rate": 0.061224489795918366,
+        "correction_operations": 637,
+        "correction_operations_per_annotated_animal": 0.5981220657276995,
+        "negative_images": 0,
+        "negative_images_with_false_alarms": 0
+      }
+    }
+  },
+  "marker_workloads": {
+    "baseline": {
+      "whole": {
+        "marked": 10,
+        "reference": 1065,
+        "matched": 7,
+        "false_marks": 3,
+        "missed": 1058,
+        "marker_additions_and_removals": 1061,
+        "images_with_no_marker_errors": 44
+      },
+      "tiled": {
+        "marked": 43,
+        "reference": 1065,
+        "matched": 27,
+        "false_marks": 16,
+        "missed": 1038,
+        "marker_additions_and_removals": 1054,
+        "images_with_no_marker_errors": 43
+      }
+    },
+    "finetuned": {
+      "tiled-finetuned": {
+        "marked": 1137,
+        "reference": 1065,
+        "matched": 767,
+        "false_marks": 370,
+        "missed": 298,
+        "marker_additions_and_removals": 668,
+        "images_with_no_marker_errors": 12
+      }
+    }
+  },
+  "human_review": {
+    "complete_human_sessions": 1,
+    "status": "exploratory",
+    "modes": {
+      "manual": {
+        "trials": 2,
+        "active_seconds": 49.737300000071514,
+        "reference_observations": 41,
+        "false_marks": 14,
+        "missed": 36
+      },
+      "assisted": {
+        "trials": 2,
+        "active_seconds": 100.68620000004775,
+        "reference_observations": 40,
+        "false_marks": 7,
+        "missed": 9
+      }
+    },
+    "by_pipeline": {
+      "finetuned": {
+        "manual": {
+          "trials": 2,
+          "active_seconds": 49.737300000071514,
+          "reference_observations": 41,
+          "false_marks": 14,
+          "missed": 36
+        },
+        "assisted": {
+          "trials": 2,
+          "active_seconds": 100.68620000004775,
+          "reference_observations": 40,
+          "false_marks": 7,
+          "missed": 9
+        }
+      }
+    },
+    "by_interface": {
+      "1": {
+        "manual": {
+          "trials": 2,
+          "active_seconds": 49.737300000071514,
+          "reference_observations": 41,
+          "false_marks": 14,
+          "missed": 36
+        },
+        "assisted": {
+          "trials": 2,
+          "active_seconds": 100.68620000004775,
+          "reference_observations": 40,
+          "false_marks": 7,
+          "missed": 9
+        }
+      }
+    },
+    "interface_feedback": [
+      {
+        "session_id": "d7aca0dabaa1ce9221980ab2",
+        "ui_version": "1",
+        "date": "2026-09-05",
+        "user_report": "Both: AI misses or merges bunched cows, and clicks interfere with nearby markers.",
+        "confirmed_interface_issue": "The original click handler removed the first marker within 14 screen pixels. Adding an adjacent cow could remove a previously marked one.",
+        "interpretation": "Retain the original session. Interface interference, different images per condition, and incomplete reference labels prevent a clean manual/assisted timing or accuracy comparison.",
+        "fix": "Interface v2 separates Add and Remove, removes the closest marker only in Remove mode, uses smaller hollow markers, and adds greater zoom plus marker visibility controls. Detector investigation is separate."
+      }
+    ],
+    "time_savings_claim": null,
+    "note": "Different images per condition, incomplete reference labels, and reported v1 marker interference prevent a clean efficiency comparison. Interface versions are separated. Automated QA excluded."
+  },
+  "file_sha256": {
+    "pyproject.toml": "6f76ecc7c97268254d7171bc877ab0e79bfb08c0a7d0879bfb54ec64dd16d9a4",
+    "scripts/aerial_infer.py": "bb9b05eaa9a7029bf2f6209d2af7eba8f145029d1e9226623e5e50276c3cafd7",
+    "scripts/aerial_metrics.py": "041e91e93497b2338edba855cd1523f7d2ca508270e3d58c969ee5398b2ecf7a",
+    "scripts/aerial_report.py": "36c16fd3dc70582aa9eeb55f7fdfe90097d9d1809b9c377fcbc1c7c0367c3856",
+    "scripts/check_aerial_backends.py": "e06fc43a1ea73d7d5104f4a4edc54ee11de7fd1042bdce990773f65bae6662dc",
+    "scripts/evaluate_aerial_finetune.py": "16d303d4ca5890bc2e9795ce35ac6fbeee477c8030f44645a08dc1d7efda0b72",
+    "scripts/fetch_aerial_subset.py": "a8eeaee3e30503a14d72d48920576d538c3db751e19f65a80d59c22a95e2af86",
+    "scripts/render_aerial_evidence.py": "8a6f3bef9013d3378db4ce446103a6653e1301966ec7cd8273f2413e0745f906",
+    "scripts/train_aerial_finetune.py": "4f9ec8b483db29f3c87b6a5f8bf62721eb34989b701f494dbf16e97f16d80e5d",
+    "uv.lock": "8a306668175ea47dfe3e5cfaefc6ecf70eb18c51009641f536e975993466b50a",
+    "validation/finetune-protocol.json": "354f7ae95a2127ae1d23b3ab4849f4a05d58985921a975c8292fbbc779d1debc",
+    "validation/protocol.json": "3bb86e368ec1b9fb8096dc53776d7412665c7856b1439bc0b5e9fcc453880ce4"
+  },
+  "known_benchmark_finetune": true
+}

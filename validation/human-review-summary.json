@@ -1,0 +1,69 @@
+{
+  "complete_human_sessions": 1,
+  "status": "exploratory",
+  "modes": {
+    "manual": {
+      "trials": 2,
+      "active_seconds": 49.737300000071514,
+      "reference_observations": 41,
+      "false_marks": 14,
+      "missed": 36
+    },
+    "assisted": {
+      "trials": 2,
+      "active_seconds": 100.68620000004775,
+      "reference_observations": 40,
+      "false_marks": 7,
+      "missed": 9
+    }
+  },
+  "by_pipeline": {
+    "finetuned": {
+      "manual": {
+        "trials": 2,
+        "active_seconds": 49.737300000071514,
+        "reference_observations": 41,
+        "false_marks": 14,
+        "missed": 36
+      },
+      "assisted": {
+        "trials": 2,
+        "active_seconds": 100.68620000004775,
+        "reference_observations": 40,
+        "false_marks": 7,
+        "missed": 9
+      }
+    }
+  },
+  "by_interface": {
+    "1": {
+      "manual": {
+        "trials": 2,
+        "active_seconds": 49.737300000071514,
+        "reference_observations": 41,
+        "false_marks": 14,
+        "missed": 36
+      },
+      "assisted": {
+        "trials": 2,
+        "active_seconds": 100.68620000004775,
+        "reference_observations": 40,
+        "false_marks": 7,
+        "missed": 9
+      }
+    }
+  },
+  "interface_feedback": [
+    {
+      "session_id": "d7aca0dabaa1ce9221980ab2",
+      "ui_version": "1",
+      "date": "2026-09-05",
+      "user_report": "Both: AI misses or merges bunched cows, and clicks interfere with nearby markers.",
+      "confirmed_interface_issue": "The original click handler removed the first marker within 14 screen pixels. Adding an adjacent cow could remove a previously marked one.",
+      "interpretation": "Retain the original session. Interface interference, different images per condition, and incomplete reference labels prevent a clean manual/assisted timing or accuracy comparison.",
+      "fix": "Interface v2 separates Add and Remove, removes the closest marker only in Remove mode, uses smaller hollow markers, and adds greater zoom plus marker visibility controls. Detector investigation is separate."
+    }
+  ],
+  "time_savings_claim": null,
+  "note": "Different images per condition, incomplete reference labels, and reported v1 marker interference prevent a clean efficiency comparison. Interface versions are separated. Automated QA excluded."
+}

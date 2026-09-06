@@ -1,0 +1,7 @@
+{
+  "name": "herdproof-measured-field",
+  "private": true,
+  "type": "module",
+  "scripts": {"serve": "node server.mjs", "check": "node --check app.js && node --check terrain.js && node --check server.mjs", "validate": "node validate.mjs"},
+  "dependencies": {"three": "0.180.0", "@dimforge/rapier3d-compat": "0.17.3"}
+}

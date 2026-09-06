@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "name": "Jalogny",
+  "source_image_id": "46472379c810",
+  "captured": "2023-09-26 13:47:22",
+  "source_image": "../data/46472379c810.jpg",
+  "detections": "../runs/finetuned/demo.json",
+  "terrain": "data/ign/terrain.tif",
+  "reference_ortho": "data/ign/reference-ortho.jpg",
+  "source_manifest": "data/ign/source-manifest.json",
+  "landmarks": "landmarks.json",
+  "cow_review": "cow-review.json",
+  "calibration": "camera-calibration.json",
+  "features": "features.json",
+  "cow_model": "assets/cow-original.glb",
+  "origin_enu": [
+    826806.0,
+    6590622.0,
+    245.9
+  ],
+  "horizontal_crs": "EPSG:2154",
+  "vertical_reference": "IGN NGF-IGN69 product; WMS metadata acquisition date unresolved",
+  "terrain_window": [
+    300,
+    300,
+    401,
+    401
+  ],
+  "atlas_resolution": 4096,
+  "outer_terrain_stride": 4,
+  "camera_yaw_prior_deg": -88.2,
+  "camera_height_prior_m": 110,
+  "reference_count": 22,
+  "attributions": [
+    {
+      "name": "Drone image: Helary & Lebreton / Institut de l\u2019Elevage, ICAERUS v2 \u00b7 CC BY 4.0",
+      "url": "https://zenodo.org/records/11048412"
+    },
+    {
+      "name": "Terrain & reference ortho: IGN \u00b7 Licence Ouverte 2.0",
+      "url": "https://cartes.gouv.fr/"
+    },
+    {
+      "name": "Cow mesh: Lyndon Daniels \u00b7 CC0",
+      "url": "https://opengameart.org/content/realtime-ranchers-3d-model-pack"
+    }
+  ],
+  "limits": [
+    "Scene IDs are observation IDs, not verified animal identities.",
+    "Cow positions use a manually fitted camera and an assumed 1.25 m back height.",
+    "Grass species, growth, hidden coat detail and tree heights are illustrative.",
+    "National reference imagery supplies areas outside the source camera footprint."
+  ],
+  "texture_masks": "texture-masks.json",
+  "reference_bounds": [
+    826555.75,
+    6590372.25,
+    827055.75,
+    6590872.25
+  ],
+  "cow_normal": "assets/cow-normal.png"
+}

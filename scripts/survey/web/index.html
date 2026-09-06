@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HerdProof · Livestock evidence review</title>
+  <meta name="description" content="Drone-assisted livestock review for agricultural lending. Review cattle observations, survey evidence and field context in one local workflow.">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/review-summary.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="/">Herd<span>Proof</span></a>
+  <nav aria-label="Main navigation"><span class="active">Survey review</span><a href="/lab">Counting lab</a><a href="#technical-evidence">How it works</a></nav>
+  <span class="local">Runs on this computer</span>
+</header>
+
+<p id="error" role="alert" hidden></p>
+<p id="notice" class="notice" role="status" hidden></p>
+
+<section class="world-panel" aria-label="Livestock evidence review">
+  <div>
+    <p class="purpose-lead">Drone-assisted livestock review for agricultural lending. Check cattle observations and survey evidence, then explore the field behind a loan application.</p>
+    <details class="project-purpose">
+      <summary>Why I built HerdProof</summary>
+      <p>I built HerdProof to explore how drone imagery could support livestock monitoring for agricultural lenders. It brings cattle observations, photo consistency checks and field context into a reviewable record, so a reviewer can see what needs closer inspection.</p>
+      <p>Agricultural industrialization starts with repeatable ways to inspect productive assets. The next step is to test whether this workflow reduces review work in a real lender pilot.</p>
+    </details>
+  </div>
+  <div class="world-action"><button id="build-world" class="primary" disabled>Build world ↗</button>
+    <p id="world-hint" class="hint">Upload photos and draw at least three boundary corners.</p>
+    <p class="hint">Field context from near-vertical DJI photos in France. Measured elevation; approximate photo alignment and cow appearance.</p>
+  </div>
+  <div id="world-current" class="world-current" hidden aria-live="polite">
+    <strong id="world-status"></strong><p id="world-progress"></p>
+    <div id="world-result"></div><button id="retry-world" hidden>Retry build</button>
+  </div>
+  <details id="world-history-details" hidden><summary>Previous worlds</summary><div id="world-history"></div></details>
+</section>
+
+<!-- ─────────── Stage: the imagery is the working surface ─────────── -->
+<section class="stage" aria-labelledby="boundary-heading">
+  <h2 id="boundary-heading" class="visually-hidden">Farm map</h2>
+  <div class="map-wrap">
+    <svg id="map" viewBox="0 0 1000 1000" aria-label="Aerial map for drawing a farmland boundary" tabindex="0" role="img">
+      <defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="#4b5f59" stroke-width="1"/></pattern></defs>
+      <rect x="-10000000" y="-10000000" width="20000000" height="20000000" fill="#1d2a27"/>
+      <rect x="-10000000" y="-10000000" width="20000000" height="20000000" fill="url(#grid)"/>
+      <image href="/map.jpg" x="0" y="0" width="1000" height="1000"/>
+      <g id="survey-layer" pointer-events="none"></g><g id="footprint-layer" pointer-events="none"></g>
+      <g id="boundary-layer"></g><g id="camera-layer"></g>
+    </svg>
+
+    <div class="map-intro" id="map-intro">
+      <div class="intro-panel">
+        <h2>Trace the field.<br>Check the photos that claim it.</h2>
+        <p>One boundary can span many photographs. Start from the map, or start from your survey.</p>
+        <div class="entry-points">
+          <button id="start-map"><strong>Draw the boundary</strong><span>Outline the farmland here, then add photos.</span></button>
+          <button id="start-upload"><strong>Upload survey photos</strong><span>Place your images on the map, then trace across them.</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-tools" aria-label="Map tools">
+      <button id="draw" aria-pressed="true">Draw</button><button id="edit" aria-pressed="false">Edit and pan</button>
+      <span class="rule"></span>
+      <button id="undo">Undo point</button><button id="clear">Clear</button>
+      <span class="rule"></span>
+      <button id="zoom-out" aria-label="Zoom out">−</button><button id="zoom-in" aria-label="Zoom in">+</button><button id="fit">Fit</button>
+    </div>
+
+    <div class="map-foot">
+      <span class="north" aria-hidden="true">N ↑</span>
+      <div id="map-layers" class="map-layers" hidden>
+        <label><input id="show-imagery" type="checkbox" checked> Survey imagery</label>
+        <label><input id="show-footprints" type="checkbox"> Photo edges</label>
+        <button id="fit-survey">Fit survey</button>
+      </div>
+      <span class="map-credit">IGN orthophoto, reference imagery, capture date unspecified</span>
+    </div>
+  </div>
+
+  <div class="stage-notes">
+    <p id="map-hint" class="hint">Click at least three boundary corners, then choose Edit and pan. Drag vertices to adjust.</p>
+    <p id="placement-note" class="hint" hidden></p>
+    <p id="coverage-note" class="coverage-note" hidden></p>
+    <p class="key"><i class="swatch-teal"></i>Farmland you claim<i class="swatch-amber"></i>Photo coverage</p>
+  </div>
+</section>
+
+<!-- ─────────── One submission, three requirements ─────────── -->
+<section class="band">
+
+  <div class="col" aria-labelledby="photos-heading">
+    <div class="col-head"><h2 id="photos-heading">Survey photos</h2><span id="photo-count" class="badge">None yet</span></div>
+
+    <div id="photo-empty" class="photo-empty">
+      <strong>Add the photos from your survey flight</strong>
+      <p>Up to 24 JPEGs or PNGs, 20 MiB and 32 MP each. Overlapping photos can cover the whole farm.</p>
+    </div>
+    <img id="photo" class="photo" alt="Selected evidence photograph" hidden>
+
+    <div class="photo-actions">
+      <label class="file-button">Upload photos<input id="upload" type="file" accept="image/jpeg,image/png" multiple></label>
+      <button id="example-batch">Try demo batch</button>
+      <button id="example-photo">Use demo photo</button>
+    </div>
+
+    <div id="survey-summary" class="survey-summary" hidden>
+      <p id="batch-progress" role="status"></p>
+      <button id="build-batch" hidden>Build map</button>
+      <div id="photo-list" class="photo-list"></div>
+    </div>
+
+    <p id="upload-errors" class="hint" role="alert" hidden></p>
+    <p id="photo-caption" class="hint">Checks read the uploaded file itself. Missing GPS or time stays unknown.</p>
+    <p id="model-note" class="model-note" hidden></p>
+    <label id="saved-batches-label" hidden>Earlier photo batches<select id="saved-batches"><option value="">Choose a photo batch</option></select></label>
+  </div>
+
+  <div class="col" aria-labelledby="parcel-heading">
+    <div class="col-head"><h2 id="parcel-heading">Farmland boundary</h2><span id="boundary-state" class="badge">Not saved</span></div>
+
+    <div class="boundary-form">
+      <label>Boundary name<input id="parcel-name" maxlength="100" value="My field"></label>
+      <button id="save" class="primary">Save boundary</button>
+    </div>
+    <strong id="area" class="measure">Draw a boundary to begin</strong>
+
+    <div class="map-actions">
+      <button id="example-boundary">Use example outline</button>
+      <label class="file-button">Import GeoJSON<input id="import-geojson" type="file" accept=".geojson,.json,application/geo+json,application/json"></label>
+      <button id="export-geojson" disabled>Export GeoJSON</button>
+    </div>
+
+    <label>Saved boundaries<select id="saved-parcels"><option value="">Choose a boundary</option></select></label>
+
+    <details>
+      <summary>Vertex coordinates and map source</summary>
+      <p class="hint">Positions use EPSG:2154 metres. GeoJSON uses longitude, latitude. The example outline is illustrative; it establishes no cadastral ownership.</p>
+      <div id="vertices" class="vertices"></div>
+      <p class="hint">Map extent 500 × 500 m. Map: IGN, Licence Ouverte 2.0. Outside the cached image, only the coordinate grid is available.</p>
+    </details>
+  </div>
+
+  <div class="col" aria-labelledby="check-heading">
+    <div class="col-head"><h2 id="check-heading">Declare and check</h2></div>
+
+    <div class="declaration">
+      <label for="capture-date">Capture date you declare</label>
+      <input id="capture-date" type="date" required>
+      <p class="hint">This is your assertion, in camera-local time. The checks hold it against the date the file itself carries. EXIF time and GPS are editable, not authenticated capture.</p>
+    </div>
+
+    <button id="check-batch" class="primary wide" hidden disabled>Check all photos</button>
+    <button id="submit" class="primary wide" disabled>Check selected photo</button>
+    <button id="retry-batch" class="wide" hidden>Resume interrupted batch checks</button>
+    <button id="retry" class="wide" hidden>Retry interrupted submission</button>
+    <p id="submission-hint" class="hint">Save a boundary and choose a photo to run the checks.</p>
+    <div id="batch-results" class="batch-results" hidden></div>
+  </div>
+
+</section>
+
+<section id="review-summary" class="record lender-summary" aria-labelledby="review-summary-heading">
+  <div class="record-head">
+    <div><span class="section-eyebrow">FOR THE LIVESTOCK REVIEWER</span><h2 id="review-summary-heading">Survey review summary</h2></div>
+    <span id="review-state" class="badge">Awaiting evidence</span>
+  </div>
+  <p id="review-scope" class="summary-scope">Load survey photos and save a boundary to begin. Results here stay tied to the selected survey.</p>
+  <dl id="review-metrics" class="review-metrics"></dl>
+  <div class="review-next"><h3>Next action</h3><p id="review-next-action" role="status">Load the demo batch or a survey, then check its photos.</p></div>
+  <div id="review-links" class="record-actions"></div>
+  <p class="hint">Observations support human review. Total herd inventory, animal ownership and loan eligibility remain unverified.</p>
+</section>
+
+<!-- ─────────── The record ─────────── -->
+<section id="record-empty" class="record record-empty">
+  <h2>The assessment appears here</h2>
+  <ol class="walkthrough">
+    <li>Load the demo batch to place six overlapping drone photos.</li>
+    <li>Trace the farmland across them, or use the example outline, and save it.</li>
+    <li>Check the photos for reused evidence and for date or location conflicts.</li>
+  </ol>
+  <p class="hint">Photo coverage is not the farm boundary. Photos with missing camera metadata stay available for evidence checks.</p>
+</section>
+
+<section id="assessment" class="record" hidden aria-labelledby="assessment-heading">
+  <div class="record-head">
+    <h2 id="assessment-heading"></h2>
+    <div class="record-actions">
+      <button id="export-report">Export assessment</button>
+      <button id="verify-current">Verify saved assessment</button>
+    </div>
+  </div>
+  <dl class="record-meta">
+    <div><dt>File</dt><dd id="record-file" class="data"></dd></div>
+    <div><dt>Boundary</dt><dd id="record-parcel"></dd></div>
+    <div><dt>Declared capture date</dt><dd id="record-declared" class="data"></dd></div>
+  </dl>
+  <div id="checks" class="checks"></div>
+  <details>
+    <summary>Evidence details and trust limits</summary>
+    <pre id="evidence-details"></pre>
+    <ul id="limits"></ul>
+  </details>
+</section>
+
+<section class="record history-panel">
+  <div class="record-head">
+    <h2>Assessment history</h2>
+    <label class="file-button">Verify exported JSON<input id="verify-file" type="file" accept=".json,application/json"></label>
+  </div>
+  <p class="hint">Saved on this computer. Verification compares an export against the original server record.</p>
+  <div id="history"><p class="hint">No evidence submitted yet.</p></div>
+</section>
+
+<section id="technical-evidence" class="record project-evidence" aria-labelledby="technical-heading">
+  <div class="record-head"><div><span class="section-eyebrow">THE ENGINEERING</span><h2 id="technical-heading">One cow can appear in several photos.</h2></div><a href="/project-evidence.json" download>Download recorded results</a></div>
+  <p class="section-copy">The counting pipeline detects cows in the original photos, aligns overlapping backgrounds and compares observations in the area both cameras can see. A clipped cow can match a clearer view; an unresolved sighting stays flagged for another capture.</p>
+  <ol class="pipeline-steps" aria-label="Counting and review workflow"><li>Detect in each photo</li><li>Align shared ground</li><li>Remove repeated sightings</li><li>Review uncertain observations</li><li>Export evidence</li></ol>
+  <div class="evidence-grid">
+    <article class="worked-case">
+      <span class="section-eyebrow">RECORDED TWO-PHOTO RUN · 6 SEP 2026</span>
+      <h3>From repeated sightings to a reviewable estimate.</h3>
+      <dl class="case-counts"><div><dt>Image detections</dt><dd>30</dd></div><div><dt>Repeats removed</dt><dd>12</dd></div><div><dt>Estimated distinct sightings</dt><dd>18</dd></div></dl>
+      <p class="case-finding"><strong>Next action: capture another view.</strong> One clipped sighting remains unresolved and is included in the estimate. The saved pipeline status is <span class="data">needs_edge_recapture</span>.</p>
+      <p class="hint">Actual saved model output from two photos captured on 7 Nov 2023. This is a pipeline example, separate from the selected survey above. The 18 sightings have not been independently verified; full-property coverage is unverified.</p>
+    </article>
+    <article class="benchmark-results">
+      <h3>What has been measured</h3>
+      <dl class="benchmark-list"><div><dt>Detector precision / recall</dt><dd>81.92% / 77.91%</dd></div><div><dt>Controlled overlap cases passed</dt><dd>192 / 192</dd></div><div><dt>Known duplicate links recovered</dt><dd>1,293 / 1,293</dd></div></dl>
+      <p class="hint">Detector: corrected YOLOv8n v2, confidence 0.70; 77 images and 1,041 provisional annotations. Exploratory results on a previously inspected public benchmark, with incomplete labels; not fresh blind validation.</p>
+      <p class="hint">Overlap: two 96-case crop suites using supplied annotation boxes and known identities. These test matching geometry separately from detector accuracy, moving-animal identity and whole-herd counting.</p>
+      <a href="/lab">Open the counting and correction lab ↗</a>
+    </article>
+  </div>
+  <details class="overlap-example"><summary>See matched observations across real drone photos</summary><figure><a href="/overlap-evidence.jpg" target="_blank" rel="noopener"><img src="/overlap-evidence.jpg" width="1200" height="1700" loading="lazy" alt="Six pairs of drone-photo crops show clipped cows matched with another view. Green boxes are source annotations; matches are inferred by the overlap code."></a><figcaption>Existing annotation boxes, with matches inferred by the overlap code. Imagery: Helary and Lebreton / Institut de l’Élevage, ICAERUS grazing cows v2, CC BY 4.0. <a href="https://doi.org/10.5281/zenodo.11048412" target="_blank" rel="noopener">Dataset and attribution</a>.</figcaption></figure></details>
+</section>
+
+<section id="first-deployment" class="record deployment-plan" aria-labelledby="deployment-heading">
+  <div class="record-head"><div><span class="section-eyebrow">BEYOND THE PROTOTYPE</span><h2 id="deployment-heading">Start with one lender and one ranch.</h2></div><span class="badge">Proposed pilot</span></div>
+  <p class="section-copy">The first intended user is an agricultural loan officer or livestock collateral reviewer. A ranch or inspection partner supplies a dated survey; the reviewer checks observations and exceptions, then attaches the exported assessment to an existing review process.</p>
+  <div class="deployment-grid">
+    <article><h3>Fit the existing workflow</h3><p>Begin with inventory monitoring alongside the lender’s current inspections and records. Human reviewers resolve discrepancies. Animal identity, ownership, valuation and lending decisions need separate evidence and policies.</p></article>
+    <article><h3>Measure the full cost</h3><p>Compare assisted and manual review on independently checked surveys. Measure missed cattle, corrections, recaptures and total review time, including capture, upload and processing. Cost per survey and willingness to pay remain to be measured.</p></article>
+    <article><h3>Prepare for real farm data</h3><p>The demo runs locally with saved evidence checks. Deployment needs authenticated access, separation between customers, retention controls, secure storage and an agreed capture protocol. Validate local flight requirements and lender data policies before a pilot.</p></article>
+  </div>
+  <p class="pilot-goal"><strong>Pilot success:</strong> useful evidence with fewer review hours, without increasing missed cattle or hiding gaps. Savings and lender adoption have not yet been established.</p>
+</section>
+
+<footer>
+  <p>Camera GPS checks location consistency only. Whole-property coverage, animal identity and ownership stay unverified.</p>
+  <p>Demo photograph: Helary and Lebreton, Institut de l’Élevage, ICAERUS grazing cows v2, CC BY 4.0.</p>
+</footer>
+
+</body></html>

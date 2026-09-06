@@ -1,47 +1,54 @@
+# Local environments, caches, and build outputs
 .venv/
 .cache/
+.pnpm-store/
+node_modules
 __pycache__/
-*.pyc
-validation/data/
-validation/models/
-validation/review-assets/
-validation/sessions/
-validation/runs/
-validation/train-data/
-validation/calibration-sanity.json
-validation/*.log
+*.py[cod]
+.DS_Store
+.next/
+.vinext/
+.vercel/
+.wrangler/
+dist/
+coverage/
+*.tsbuildinfo
 
-# Publish the training package and explicitly selected survey scripts.
-# Research, local artifacts, and all other scripts stay private.
-/*
-!/.gitignore
-!/training/
-/training/*
-!/training/*.py
-!/training/*.json
-!/training/environment/
-/training/environment/*
-!/training/environment/pyproject.toml
-!/training/environment/uv.lock
-!/training/environment/requirements-cu126.lock
-!/training/slurm/
-/training/slurm/*
-!/training/slurm/*.sh
+# Credentials and local application state
+.env*
+!.env.example
+*.pem
+*.key
+*.sqlite*
+*.db
+*.log
 
-!/scripts/
-/scripts/*
-!/scripts/aerial_survey.py
-!/scripts/evaluate_overlap_edges.py
-!/scripts/test_aerial_survey.py
-!/scripts/test_aerial_survey_images.py
+# Downloaded datasets and training artifacts
+/datasets/
+*.pt
+*.onnx
+*.zip
+*.tar
+*.tar.gz
+# The browser demo needs its small exported detector.
+!/website/public/demo/model/*.onnx
 
-# Never publish prose notes, data, credentials, or generated model artifacts.
-**/*.[mM][dD]
-**/*.rst
-**/*.ipynb
-**/.env*
-**/__pycache__/
-**/*.pt
-**/*.png
-**/*.jpg
-**/*.zip
+# Validation mixes source with large/private generated experiments.
+# Publish its docs, protocols, review tools, and reusable viewer source.
+/validation/*
+!/validation/*.md
+!/validation/*.json
+!/validation/example-inventory.csv
+!/validation/review.html
+!/validation/marker-tools.js
+!/validation/world-viewer/
+!/validation/terrain-demo/
+/validation/terrain-demo/*
+!/validation/terrain-demo/*.md
+!/validation/terrain-demo/*.json
+!/validation/terrain-demo/*.yaml
+!/validation/terrain-demo/*.html
+!/validation/terrain-demo/*.js
+!/validation/terrain-demo/*.mjs
+!/validation/terrain-demo/*.css
+!/validation/terrain-demo/assets/

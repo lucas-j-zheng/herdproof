@@ -1,0 +1,21 @@
+{
+  "status": "provisional_incomplete_reference_labels",
+  "audited_at": "2026-09-05",
+  "discovered_after": "Completed fixed baseline and fine-tune evaluation, during fine-tune error-overlay inspection",
+  "confirmed_examples": [
+    {
+      "image_id": "161ccda3efc6",
+      "split": "evaluation",
+      "yolo_annotations": 0,
+      "voc_annotations": 0,
+      "yolo_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "image_sha256": "1114d23085fca87feb11f733fec00d41ed481dd32c3ecdb54cf264311031735c",
+      "finding": "Full-resolution visual inspection shows multiple cattle. The correctly named source VOC and YOLO files both contain no objects. An empty annotation file is not evidence of an empty scene.",
+      "evidence": "evidence/finetuned/161ccda3efc6.jpg"
+    }
+  ],
+  "additional_check": "Inspected all 88 downloaded VOC files for object-count agreement with YOLO. One includes an extra non-cow red_squirrel object; cow counts agree. The confirmed missing-label case is present in both formats, so switching formats does not resolve it.",
+  "scope": "Targeted visual audit, not complete relabeling. The prevalence of missing annotations and effects on training/calibration are unknown.",
+  "metrics_interpretation": "Retain frozen scores as agreement with supplied annotations. Do not treat precision, count error, negative-scene false alarms, or correction-work estimates as verified real-world accuracy or workload. Recall is recall of supplied annotations only. Human scores against these references are provisional too.",
+  "next_validation": "Independently annotate a fresh small flight-separated test set, resolve ambiguous animals and visibility rules, audit training/calibration labels, then rerun a newly frozen experiment. Do not selectively remove troublesome test images or tune on relabeled evaluation images."
+}

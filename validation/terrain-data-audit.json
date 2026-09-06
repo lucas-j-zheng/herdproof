@@ -1,0 +1,611 @@
+{
+  "audited_on": "2026-09-06",
+  "scope": "Local file and cached ZIP-directory audit only; no elevation query, archive member download, reconstruction, or new inference. Exact GPS omitted from this summary.",
+  "dataset": "10.5281/zenodo.11048412",
+  "attribution": "Louise Helary and Adrien Lebreton / Institut de l'Elevage, ICAERUS grazing cows v2, CC BY 4.0",
+  "manifest_sha256": "8187af5881d591a27e6dad87a9c65e1b2d9b9bfddaee00547b6f597644b08240",
+  "local_images": 127,
+  "local_flight_groups": 25,
+  "sample_image_id": "46472379c810",
+  "sample_flight": "Jalogny/DJI_202309261339_058",
+  "saved_candidate_detections": 21,
+  "reference_boxes": 22,
+  "calibration_status": "unvalidated; apparent focal metadata conflict; no RTK quality tags found in selected six images",
+  "local_flight_photos": [
+    {
+      "id": "5c5b8cefff42",
+      "original_name": "DJI_20230926134627_0006_V.JPG",
+      "image_path": "/Users/lucas/dev/personal-projects/herdproof/validation/data/5c5b8cefff42.jpg",
+      "image_sha256": "c422af64df8b98a8d278a7857964dee5748476d3a4822eaaa2ecab7eccadd4c1",
+      "captured_local_time": "2023-09-26T13:46:27",
+      "dimensions": [
+        5280,
+        3956
+      ],
+      "camera": "M3E",
+      "gps_present": true,
+      "relative_altitude_m": 100.019,
+      "gimbal_yaw_pitch_roll_deg": [
+        142.7,
+        -89.9,
+        0.0
+      ],
+      "calibration_metadata": {
+        "CalibratedFocalLength": "24000.000000",
+        "CalibratedOpticalCenterX": "0.000000",
+        "CalibratedOpticalCenterY": "0.000000",
+        "DewarpFlag": "0",
+        "DewarpData": "2022-06-08;3713.290000000000,3713.290000000000,7.020000000000,-8.720000000000,-0.112575240000,0.014874430000,-0.000085720000,0.000000100000,-0.027064110000"
+      },
+      "rtk_quality_tags_present": false
+    },
+    {
+      "id": "cf74e15ed234",
+      "original_name": "DJI_20230926134717_0015_V.JPG",
+      "image_path": "/Users/lucas/dev/personal-projects/herdproof/validation/data/cf74e15ed234.jpg",
+      "image_sha256": "ce53b51dfae74079b50e516f659cb9166c6287ed8a4d220431d4c4dc0dd184b6",
+      "captured_local_time": "2023-09-26T13:47:17",
+      "dimensions": [
+        5280,
+        3956
+      ],
+      "camera": "M3E",
+      "gps_present": true,
+      "relative_altitude_m": 100.002,
+      "gimbal_yaw_pitch_roll_deg": [
+        -88.5,
+        -89.9,
+        0.0
+      ],
+      "calibration_metadata": {
+        "CalibratedFocalLength": "24000.000000",
+        "CalibratedOpticalCenterX": "0.000000",
+        "CalibratedOpticalCenterY": "0.000000",
+        "DewarpFlag": "0",
+        "DewarpData": "2022-06-08;3713.290000000000,3713.290000000000,7.020000000000,-8.720000000000,-0.112575240000,0.014874430000,-0.000085720000,0.000000100000,-0.027064110000"
+      },
+      "rtk_quality_tags_present": false
+    },
+    {
+      "id": "46472379c810",
+      "original_name": "DJI_20230926134722_0016_V.JPG",
+      "image_path": "/Users/lucas/dev/personal-projects/herdproof/validation/data/46472379c810.jpg",
+      "image_sha256": "0c3f846a459e5b7fd6cf49dfbe5e2880feab8392a5e095ee3bb88411398f897c",
+      "captured_local_time": "2023-09-26T13:47:22",
+      "dimensions": [
+        5280,
+        3956
+      ],
+      "camera": "M3E",
+      "gps_present": true,
+      "relative_altitude_m": 99.904,
+      "gimbal_yaw_pitch_roll_deg": [
+        -88.2,
+        -89.9,
+        0.0
+      ],
+      "calibration_metadata": {
+        "CalibratedFocalLength": "24000.000000",
+        "CalibratedOpticalCenterX": "0.000000",
+        "CalibratedOpticalCenterY": "0.000000",
+        "DewarpFlag": "0",
+        "DewarpData": "2022-06-08;3713.290000000000,3713.290000000000,7.020000000000,-8.720000000000,-0.112575240000,0.014874430000,-0.000085720000,0.000000100000,-0.027064110000"
+      },
+      "rtk_quality_tags_present": false
+    },
+    {
+      "id": "39a97e3d63d0",
+      "original_name": "DJI_20230926134756_0023_V.JPG",
+      "image_path": "/Users/lucas/dev/personal-projects/herdproof/validation/data/39a97e3d63d0.jpg",
+      "image_sha256": "638f83291e277c3ad82c964e08c71fbf7408dd09df6477b17ae5dbe41b843f89",
+      "captured_local_time": "2023-09-26T13:47:56",
+      "dimensions": [
+        5280,
+        3956
+      ],
+      "camera": "M3E",
+      "gps_present": true,
+      "relative_altitude_m": 99.976,
+      "gimbal_yaw_pitch_roll_deg": [
+        91.9,
+        -89.9,
+        0.0
+      ],
+      "calibration_metadata": {
+        "CalibratedFocalLength": "24000.000000",
+        "CalibratedOpticalCenterX": "0.000000",
+        "CalibratedOpticalCenterY": "0.000000",
+        "DewarpFlag": "0",
+        "DewarpData": "2022-06-08;3713.290000000000,3713.290000000000,7.020000000000,-8.720000000000,-0.112575240000,0.014874430000,-0.000085720000,0.000000100000,-0.027064110000"
+      },
+      "rtk_quality_tags_present": false
+    },
+    {
+      "id": "161ccda3efc6",
+      "original_name": "DJI_20230926134844_0031_V.JPG",
+      "image_path": "/Users/lucas/dev/personal-projects/herdproof/validation/data/161ccda3efc6.jpg",
+      "image_sha256": "1114d23085fca87feb11f733fec00d41ed481dd32c3ecdb54cf264311031735c",
+      "captured_local_time": "2023-09-26T13:48:44",
+      "dimensions": [
+        5280,
+        3956
+      ],
+      "camera": "M3E",
+      "gps_present": true,
+      "relative_altitude_m": 100.13,
+      "gimbal_yaw_pitch_roll_deg": [
+        -88.1,
+        -90.0,
+        0.0
+      ],
+      "calibration_metadata": {
+        "CalibratedFocalLength": "24000.000000",
+        "CalibratedOpticalCenterX": "0.000000",
+        "CalibratedOpticalCenterY": "0.000000",
+        "DewarpFlag": "0",
+        "DewarpData": "2022-06-08;3713.290000000000,3713.290000000000,7.020000000000,-8.720000000000,-0.112575240000,0.014874430000,-0.000085720000,0.000000100000,-0.027064110000"
+      },
+      "rtk_quality_tags_present": false
+    },
+    {
+      "id": "dfaf83dccb73",
+      "original_name": "DJI_20230926134959_0046_V.JPG",
+      "image_path": "/Users/lucas/dev/personal-projects/herdproof/validation/data/dfaf83dccb73.jpg",
+      "image_sha256": "a0302bdaa3de532a2aa7cb3220a9101e5ba672f38ab2362d910b912541b03d4c",
+      "captured_local_time": "2023-09-26T13:49:59",
+      "dimensions": [
+        5280,
+        3956
+      ],
+      "camera": "M3E",
+      "gps_present": true,
+      "relative_altitude_m": 99.884,
+      "gimbal_yaw_pitch_roll_deg": [
+        91.5,
+        -90.0,
+        0.0
+      ],
+      "calibration_metadata": {
+        "CalibratedFocalLength": "24000.000000",
+        "CalibratedOpticalCenterX": "0.000000",
+        "CalibratedOpticalCenterY": "0.000000",
+        "DewarpFlag": "0",
+        "DewarpData": "2022-06-08;3713.290000000000,3713.290000000000,7.020000000000,-8.720000000000,-0.112575240000,0.014874430000,-0.000085720000,0.000000100000,-0.027064110000"
+      },
+      "rtk_quality_tags_present": false
+    }
+  ],
+  "sample_overlap_pairs": [
+    {
+      "a": "cf74e15ed234",
+      "b": "46472379c810",
+      "seconds_apart": 5.0,
+      "registration": {
+        "accepted": true,
+        "feature_matches": 623,
+        "inliers": 331,
+        "inlier_ratio": 0.5313001605136437,
+        "overlap_fraction": 0.4976737607368239,
+        "median_error_px": 1.0280883975480148,
+        "background_support_fraction": 0.22454823147870256,
+        "homography_a_to_b": [
+          [
+            1.033816877877355,
+            0.1426472696403781,
+            -27.637340121848155
+          ],
+          [
+            0.0036310825361982484,
+            1.2081678777728275,
+            694.0436669860991
+          ],
+          [
+            -1.5262872608473137e-05,
+            0.00020739492601609677,
+            1.0
+          ]
+        ],
+        "projected_a_corners": [
+          [
+            -27.637340545654297,
+            694.0436401367188
+          ],
+          [
+            1667.1832275390625,
+            717.3720703125
+          ],
+          [
+            1468.2537841796875,
+            1754.914306640625
+          ],
+          [
+            114.83989715576172,
+            1715.9400634765625
+          ]
+        ],
+        "reason": "background_verified"
+      }
+    }
+  ],
+  "archive_index": {
+    "inspection": "cached central directory; member data not fetched or CRC verified in this audit",
+    "archive_size_bytes": 16586848207,
+    "flight_jpeg_count": 53,
+    "compressed_bytes": 800401621,
+    "missing_local_jpegs": 47,
+    "members": [
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134602_0001_V.JPG",
+        "compressed_bytes": 14228411,
+        "uncompressed_bytes": 14303232,
+        "crc32": "c0a46544",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134607_0002_V.JPG",
+        "compressed_bytes": 14757873,
+        "uncompressed_bytes": 14835712,
+        "crc32": "5768d7bf",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134612_0003_V.JPG",
+        "compressed_bytes": 14492843,
+        "uncompressed_bytes": 14569472,
+        "crc32": "64823f59",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134617_0004_V.JPG",
+        "compressed_bytes": 14705631,
+        "uncompressed_bytes": 14786560,
+        "crc32": "1b0e6765",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134622_0005_V.JPG",
+        "compressed_bytes": 14913394,
+        "uncompressed_bytes": 14991360,
+        "crc32": "70111c1b",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134627_0006_V.JPG",
+        "compressed_bytes": 14823580,
+        "uncompressed_bytes": 14901248,
+        "crc32": "c1513e5c",
+        "cached_original": true
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134631_0007_V.JPG",
+        "compressed_bytes": 13809633,
+        "uncompressed_bytes": 13881344,
+        "crc32": "a457873f",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134636_0008_V.JPG",
+        "compressed_bytes": 13648269,
+        "uncompressed_bytes": 13717504,
+        "crc32": "7f349221",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134641_0009_V.JPG",
+        "compressed_bytes": 14432506,
+        "uncompressed_bytes": 14503936,
+        "crc32": "e1a8f0c2",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134701_0013_V.JPG",
+        "compressed_bytes": 14269669,
+        "uncompressed_bytes": 14344192,
+        "crc32": "4d9f4a7a",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134712_0014_V.JPG",
+        "compressed_bytes": 13996884,
+        "uncompressed_bytes": 14073856,
+        "crc32": "d26166bd",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134717_0015_V.JPG",
+        "compressed_bytes": 14868971,
+        "uncompressed_bytes": 14946304,
+        "crc32": "c2fe596c",
+        "cached_original": true
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134722_0016_V.JPG",
+        "compressed_bytes": 14972903,
+        "uncompressed_bytes": 15048704,
+        "crc32": "6d9efb84",
+        "cached_original": true
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134727_0017_V.JPG",
+        "compressed_bytes": 14686157,
+        "uncompressed_bytes": 14757888,
+        "crc32": "f5e80aec",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134732_0018_V.JPG",
+        "compressed_bytes": 15267133,
+        "uncompressed_bytes": 15343616,
+        "crc32": "d6ae6c0d",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134737_0019_V.JPG",
+        "compressed_bytes": 15352365,
+        "uncompressed_bytes": 15429632,
+        "crc32": "d4e64ca5",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134742_0020_V.JPG",
+        "compressed_bytes": 15635551,
+        "uncompressed_bytes": 15720448,
+        "crc32": "8e92c507",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134747_0021_V.JPG",
+        "compressed_bytes": 15256950,
+        "uncompressed_bytes": 15335424,
+        "crc32": "637ffd30",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134752_0022_V.JPG",
+        "compressed_bytes": 15390023,
+        "uncompressed_bytes": 15470592,
+        "crc32": "eca0c1eb",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134756_0023_V.JPG",
+        "compressed_bytes": 15516507,
+        "uncompressed_bytes": 15597568,
+        "crc32": "bfd3ada9",
+        "cached_original": true
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134801_0024_V.JPG",
+        "compressed_bytes": 14976829,
+        "uncompressed_bytes": 15052800,
+        "crc32": "8943df49",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134806_0025_V.JPG",
+        "compressed_bytes": 13704095,
+        "uncompressed_bytes": 13774848,
+        "crc32": "be72a1fe",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134811_0026_V.JPG",
+        "compressed_bytes": 14502747,
+        "uncompressed_bytes": 14581760,
+        "crc32": "caa09793",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134824_0027_V.JPG",
+        "compressed_bytes": 14808170,
+        "uncompressed_bytes": 14880768,
+        "crc32": "3419d848",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134829_0028_V.JPG",
+        "compressed_bytes": 14763783,
+        "uncompressed_bytes": 14831616,
+        "crc32": "ea84906e",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134834_0029_V.JPG",
+        "compressed_bytes": 15039479,
+        "uncompressed_bytes": 15110144,
+        "crc32": "b4035230",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134839_0030_V.JPG",
+        "compressed_bytes": 14915563,
+        "uncompressed_bytes": 14987264,
+        "crc32": "2c6c0a0f",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134844_0031_V.JPG",
+        "compressed_bytes": 14929718,
+        "uncompressed_bytes": 15007744,
+        "crc32": "8d8fc6bb",
+        "cached_original": true
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134849_0032_V.JPG",
+        "compressed_bytes": 14841084,
+        "uncompressed_bytes": 14917632,
+        "crc32": "df6a1a50",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134854_0033_V.JPG",
+        "compressed_bytes": 15464759,
+        "uncompressed_bytes": 15544320,
+        "crc32": "8b7810b5",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134859_0034_V.JPG",
+        "compressed_bytes": 15883490,
+        "uncompressed_bytes": 15970304,
+        "crc32": "ca1e1864",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134904_0035_V.JPG",
+        "compressed_bytes": 15907411,
+        "uncompressed_bytes": 15994880,
+        "crc32": "4c51fe48",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134909_0036_V.JPG",
+        "compressed_bytes": 16416619,
+        "uncompressed_bytes": 16515072,
+        "crc32": "2e712d98",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134914_0037_V.JPG",
+        "compressed_bytes": 16994521,
+        "uncompressed_bytes": 17100800,
+        "crc32": "6697b1c6",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134919_0038_V.JPG",
+        "compressed_bytes": 17103455,
+        "uncompressed_bytes": 17215488,
+        "crc32": "b2dfd185",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134924_0039_V.JPG",
+        "compressed_bytes": 16223472,
+        "uncompressed_bytes": 16314368,
+        "crc32": "9c6f11c7",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134929_0040_V.JPG",
+        "compressed_bytes": 14931645,
+        "uncompressed_bytes": 15007744,
+        "crc32": "c20268a4",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134934_0041_V.JPG",
+        "compressed_bytes": 15355837,
+        "uncompressed_bytes": 15437824,
+        "crc32": "691a0937",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134939_0042_V.JPG",
+        "compressed_bytes": 15690985,
+        "uncompressed_bytes": 15777792,
+        "crc32": "6ae942d5",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134944_0043_V.JPG",
+        "compressed_bytes": 15273297,
+        "uncompressed_bytes": 15351808,
+        "crc32": "6974a522",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134949_0044_V.JPG",
+        "compressed_bytes": 14662504,
+        "uncompressed_bytes": 14733312,
+        "crc32": "cb445796",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134954_0045_V.JPG",
+        "compressed_bytes": 14839123,
+        "uncompressed_bytes": 14909440,
+        "crc32": "fc771f50",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926134959_0046_V.JPG",
+        "compressed_bytes": 14714826,
+        "uncompressed_bytes": 14782464,
+        "crc32": "30a2ddc1",
+        "cached_original": true
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926135004_0047_V.JPG",
+        "compressed_bytes": 14618976,
+        "uncompressed_bytes": 14688256,
+        "crc32": "883b3e1a",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926135009_0048_V.JPG",
+        "compressed_bytes": 15029425,
+        "uncompressed_bytes": 15101952,
+        "crc32": "a7cc8603",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926135014_0049_V.JPG",
+        "compressed_bytes": 15719971,
+        "uncompressed_bytes": 15802368,
+        "crc32": "da6cd5b4",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926135018_0050_V.JPG",
+        "compressed_bytes": 16181971,
+        "uncompressed_bytes": 16269312,
+        "crc32": "4275b493",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926135023_0051_V.JPG",
+        "compressed_bytes": 16059397,
+        "uncompressed_bytes": 16146432,
+        "crc32": "154493e7",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926135028_0052_V.JPG",
+        "compressed_bytes": 14952713,
+        "uncompressed_bytes": 15024128,
+        "crc32": "85d7fed7",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926135033_0053_V.JPG",
+        "compressed_bytes": 14815176,
+        "uncompressed_bytes": 14888960,
+        "crc32": "f6c1baa9",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926135044_0054_V.JPG",
+        "compressed_bytes": 14977741,
+        "uncompressed_bytes": 15052800,
+        "crc32": "924eea94",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926135049_0055_V.JPG",
+        "compressed_bytes": 15261457,
+        "uncompressed_bytes": 15339520,
+        "crc32": "f5fa4eec",
+        "cached_original": false
+      },
+      {
+        "name": "Cattle_drone_images/Jalogny/JPGImages/DJI_202309261339_058/DJI_20230926135053_0056_V.JPG",
+        "compressed_bytes": 15816129,
+        "uncompressed_bytes": 15904768,
+        "crc32": "8ced102f",
+        "cached_original": false
+      }
+    ]
+  },
+  "terrain_status": "No DEM/DTM or georeferenced reconstruction found in task input paths; exact IGN tile coverage and elevation range unverified."
+}

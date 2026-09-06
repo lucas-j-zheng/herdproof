@@ -1,0 +1,56 @@
+{
+  "run_at_utc": "2026-09-05T15:13:05.876422+00:00",
+  "scope": "Synthetic MP4 metadata edits; no cattle, QR, or attestation tested",
+  "ffmpeg_version": "ffmpeg version 7.1.5 Copyright (c) 2000-2026 the FFmpeg developers",
+  "records": {
+    "original": {
+      "file_sha256": "8119d0f6ea5a59ee29274778d7a02e0dc35449a39d876146f0f10b47865a0d11",
+      "decoded_frame_rows_sha256": "78a8a95af5c3511f72386ce53e786ce25d4d46e16ef6ccf06db2aaac29a885cb",
+      "decoded_frames": 10,
+      "tags": {
+        "major_brand": "isom",
+        "minor_version": "512",
+        "compatible_brands": "isomiso2mp41",
+        "creation_time": "2020-01-01T00:00:00.000000Z",
+        "encoder": "Lavf61.7.103",
+        "location-eng": "+00.0000+000.0000/",
+        "location": "+00.0000+000.0000/"
+      }
+    },
+    "metadata_changed": {
+      "file_sha256": "9d38c4e74577fdd0c9ab95f9637bbc3d87e4318accdc3affa28834e12db8827b",
+      "decoded_frame_rows_sha256": "78a8a95af5c3511f72386ce53e786ce25d4d46e16ef6ccf06db2aaac29a885cb",
+      "decoded_frames": 10,
+      "tags": {
+        "major_brand": "isom",
+        "minor_version": "512",
+        "compatible_brands": "isomiso2mp41",
+        "creation_time": "2026-09-05T12:00:00.000000Z",
+        "encoder": "Lavf61.7.103",
+        "location-eng": "+01.0000+001.0000/",
+        "location": "+01.0000+001.0000/"
+      }
+    },
+    "metadata_stripped": {
+      "file_sha256": "4d9ea8b056ed75e20d32264d46cfc9969faed02d9216f1284780f4a66df35b96",
+      "decoded_frame_rows_sha256": "78a8a95af5c3511f72386ce53e786ce25d4d46e16ef6ccf06db2aaac29a885cb",
+      "decoded_frames": 10,
+      "tags": {
+        "major_brand": "isom",
+        "minor_version": "512",
+        "compatible_brands": "isomiso2mp41",
+        "encoder": "Lavf61.7.103"
+      }
+    }
+  },
+  "checks": {
+    "file_hash_changed": true,
+    "decoded_video_unchanged": true,
+    "timestamp_changed": true,
+    "location_changed": true,
+    "stripped_video_unchanged": true,
+    "timestamp_and_location_removed": true
+  },
+  "all_checks_passed": true,
+  "interpretation": "MP4 time/location tags can change while decoded frames stay identical. File SHA-256 detects exact bytes, not all reuse of visual content. A reused nonce could still reject this file; no full-system bypass is demonstrated."
+}

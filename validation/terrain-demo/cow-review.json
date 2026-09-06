@@ -1,0 +1,240 @@
+{
+  "source_image_id": "46472379c810",
+  "reviewed": "2026-09-06",
+  "observations": [
+    {
+      "candidate_index": 1,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-001",
+      "image_head_vector": [
+        -0.9950371902099893,
+        0.09950371902099893
+      ],
+      "heading_status": "ambiguous head/tail; provisional reviewed axis",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 2,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-002",
+      "image_head_vector": [
+        0.7525766947068778,
+        0.658504607868518
+      ],
+      "heading_status": "visually reviewed head direction",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 3,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-003",
+      "image_head_vector": [
+        0.8137334712067349,
+        -0.5812381937190965
+      ],
+      "heading_status": "ambiguous head/tail; provisional reviewed axis",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 4,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-004",
+      "image_head_vector": [
+        -0.9889363528682975,
+        0.14834045293024462
+      ],
+      "heading_status": "visually reviewed head direction",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 5,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-005",
+      "image_head_vector": [
+        -0.5299989400031799,
+        0.8479983040050879
+      ],
+      "heading_status": "visually reviewed head direction",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 6,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-006",
+      "image_head_vector": [
+        -0.9950371902099893,
+        -0.09950371902099893
+      ],
+      "heading_status": "visually reviewed head direction",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 7,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-007",
+      "image_head_vector": [
+        -0.6,
+        0.8
+      ],
+      "heading_status": "visually reviewed head direction",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 8,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-008",
+      "image_head_vector": [
+        0.5812381937190965,
+        0.8137334712067349
+      ],
+      "heading_status": "ambiguous head/tail; provisional reviewed axis",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 9,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-009",
+      "image_head_vector": [
+        -1.0,
+        0.0
+      ],
+      "heading_status": "visually reviewed head direction",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 10,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-010",
+      "image_head_vector": [
+        -0.8479983040050879,
+        0.5299989400031799
+      ],
+      "heading_status": "ambiguous head/tail; provisional reviewed axis",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 11,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-011",
+      "image_head_vector": [
+        -0.8944271909999159,
+        0.4472135954999579
+      ],
+      "heading_status": "visually reviewed head direction",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 12,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-012",
+      "image_head_vector": [
+        -0.2873478855663454,
+        -0.9578262852211513
+      ],
+      "heading_status": "visually reviewed head direction",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 13,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-013",
+      "image_head_vector": [
+        0.0,
+        1.0
+      ],
+      "heading_status": "visually reviewed head direction",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 14,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-014",
+      "image_head_vector": [
+        0.19611613513818402,
+        0.9805806756909201
+      ],
+      "heading_status": "ambiguous head/tail; provisional reviewed axis",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 15,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-015",
+      "image_head_vector": [
+        -0.9284766908852592,
+        0.37139067635410367
+      ],
+      "heading_status": "visually reviewed head direction",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 16,
+      "status": "rejected",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "reason": "Duplicate observation of candidate 10"
+    },
+    {
+      "candidate_index": 17,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-017",
+      "image_head_vector": [
+        0.19611613513818402,
+        0.9805806756909201
+      ],
+      "heading_status": "ambiguous head/tail; provisional reviewed axis",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 18,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-018",
+      "image_head_vector": [
+        -0.6,
+        0.8
+      ],
+      "heading_status": "visually reviewed head direction",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 19,
+      "status": "rejected",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "reason": "Hay bale / rectangular object, not a cow"
+    },
+    {
+      "candidate_index": 20,
+      "status": "accepted",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "sceneCowId": "JAL-020",
+      "image_head_vector": [
+        -0.2873478855663454,
+        -0.9578262852211513
+      ],
+      "heading_status": "ambiguous head/tail; provisional reviewed axis",
+      "body_height_assumption_m": 1.25
+    },
+    {
+      "candidate_index": 21,
+      "status": "rejected",
+      "reviewer": "Codex visual review, 2026-09-06",
+      "reason": "Fence post, not a cow"
+    }
+  ]
+}

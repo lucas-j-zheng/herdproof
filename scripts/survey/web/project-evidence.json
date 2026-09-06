@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "recorded_on": "2026-09-06",
+  "title": "HerdProof recorded project evidence",
+  "detector": {
+    "model": "corrected-full-yolov8n-v2",
+    "confidence": 0.7,
+    "metrics": {
+      "precision": 0.819192,
+      "recall": 0.779059,
+      "f1": 0.798621,
+      "count_mae": 3.03,
+      "images": 77,
+      "annotated": 1041,
+      "predicted": 990,
+      "matched": 811,
+      "unmatched_predictions": 179,
+      "missed_annotations": 230
+    },
+    "scope": "Exploratory previously inspected test benchmark with provisional labels; not fresh blind validation"
+  },
+  "overlap": {
+    "scope": "Controlled stationary-cow crop suites with supplied annotation boxes and known identities. Separate from detector accuracy and whole-herd validation.",
+    "suites": {
+      "current": {
+        "cases": 96,
+        "exact_cases": 96,
+        "registrations_passed": 96,
+        "target_edge_cows_matched": 96,
+        "expected_matches": 836,
+        "missed_matches": 0,
+        "wrong_matches": 0
+      },
+      "holdout": {
+        "cases": 96,
+        "exact_cases": 96,
+        "registrations_passed": 96,
+        "target_edge_cows_matched": 96,
+        "expected_matches": 457,
+        "missed_matches": 0,
+        "wrong_matches": 0
+      }
+    }
+  },
+  "counting_example": {
+    "status": "needs_edge_recapture",
+    "source": "model_predictions",
+    "processed_images": 2,
+    "estimated_unique_observed": 18,
+    "coverage_verified": false,
+    "limitations": [
+      "Estimated distinct sightings; detection and association errors remain possible.",
+      "Sparse photographs do not verify complete property coverage.",
+      "Different flights and capture dates are reported separately, never summed as one herd."
+    ],
+    "surveys": [
+      {
+        "estimated_unique_observed": 18,
+        "images": 2,
+        "raw_observations": 30,
+        "repeated_observations_removed": 12,
+        "status": "needs_edge_recapture",
+        "survey": "Mauron/DJI_202311071416_061 / 2023-11-07",
+        "unresolved_clipped_tracks": 1,
+        "verified_overlap_pairs": 1
+      }
+    ]
+  },
+  "attribution": {
+    "creators": "Louise Helary and Adrien Lebreton / Institut de l’Elevage",
+    "dataset": "ICAERUS grazing-cow v2",
+    "license": "CC BY 4.0",
+    "url": "https://doi.org/10.5281/zenodo.11048412"
+  },
+  "note": "Recorded technical results, separate from the selected live survey. No whole-herd inventory, ownership, lending outcome or time saving is established."
+}

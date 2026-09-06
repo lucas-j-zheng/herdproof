@@ -1,0 +1,4 @@
+document_id,date,event,pen,quantity
+INV-W,2026-09-01,inventory,West,11
+INV-E,2026-09-01,inventory,East,15
+SALE-W,2026-09-03,sale,West,4

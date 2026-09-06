@@ -1,0 +1,31 @@
+{
+  "K": [
+    [
+      3496.9727213031656,
+      0.0,
+      2668.581114820517
+    ],
+    [
+      0.0,
+      3496.9727213031656,
+      1975.1645551938843
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "distortion": [
+    -0.03009407224162364,
+    -0.019601985451239697,
+    0.00039607028713083364,
+    0.0027724555466214044,
+    -0.015577610942082981
+  ],
+  "method": "Brown model optimized by ODM in the component containing the demo; normalized OpenSfM intrinsics converted to original pixels",
+  "image_width": 5280,
+  "image_height": 3956,
+  "source": "data/odm/field/opensfm/reconstruction.json",
+  "sha256": "83f6019e8b6519b5eaa98e0b4d265bf2a9cfc152a7d4f71e07f2418fcf26d989"
+}

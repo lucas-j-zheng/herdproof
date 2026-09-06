@@ -1,0 +1,122 @@
+{
+  "description": "Manually picked source-image / reference-ortho pixels; not surveyed ground control",
+  "landmarks": [
+    {
+      "name": "north_fence_corner",
+      "image_px": [
+        4212.5,
+        2864.189655172414
+      ],
+      "reference_px": [
+        1369,
+        1026
+      ],
+      "role": "fit",
+      "assumed_reference_pick_uncertainty_m": 0.6
+    },
+    {
+      "name": "ploughed_field_north_corner",
+      "image_px": [
+        2219.3,
+        1326.234149054505
+      ],
+      "reference_px": [
+        1159,
+        1306
+      ],
+      "role": "fit",
+      "assumed_reference_pick_uncertainty_m": 0.7
+    },
+    {
+      "name": "western_power_pole_base",
+      "image_px": [
+        1128.1000000000004,
+        3161.219688542825
+      ],
+      "reference_px": [
+        1427,
+        1466
+      ],
+      "role": "fit",
+      "assumed_reference_pick_uncertainty_m": 0.5
+    },
+    {
+      "name": "southeast_trough_centre",
+      "image_px": [
+        969.6999999999998,
+        3843.2886540600666
+      ],
+      "reference_px": [
+        1526,
+        1485
+      ],
+      "role": "fit",
+      "assumed_reference_pick_uncertainty_m": 0.7
+    },
+    {
+      "name": "pond_north_rim",
+      "image_px": [
+        3064.1,
+        309.7313681868743
+      ],
+      "reference_px": [
+        1006,
+        1206
+      ],
+      "role": "fit",
+      "assumed_reference_pick_uncertainty_m": 1.2
+    },
+    {
+      "name": "pond_east_rim",
+      "image_px": [
+        2663.7,
+        824.583426028921
+      ],
+      "reference_px": [
+        1087,
+        1250
+      ],
+      "role": "fit",
+      "assumed_reference_pick_uncertainty_m": 1.2
+    },
+    {
+      "name": "eastern_power_pole_base",
+      "image_px": [
+        1048.8999999999996,
+        3262.4299221357064
+      ],
+      "reference_px": [
+        1436,
+        1476
+      ],
+      "role": "holdout",
+      "assumed_reference_pick_uncertainty_m": 0.5
+    },
+    {
+      "name": "pond_south_rim",
+      "image_px": [
+        2236.9,
+        366.93715239154614
+      ],
+      "reference_px": [
+        1025,
+        1303
+      ],
+      "role": "holdout",
+      "assumed_reference_pick_uncertainty_m": 1.2
+    },
+    {
+      "name": "southeast_field_corner",
+      "image_px": [
+        732.1000000000004,
+        3852.0895439377086
+      ],
+      "reference_px": [
+        1565,
+        1540
+      ],
+      "role": "holdout",
+      "assumed_reference_pick_uncertainty_m": 1.5
+    }
+  ]
+}

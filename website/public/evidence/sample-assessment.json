@@ -1,0 +1,42 @@
+{
+  "coverage_verified": false,
+  "detector_selection": {
+    "global_nms_iou": 0.5,
+    "known_benchmark_followup": true,
+    "selected_mode": "tiled-corrected-full-v2",
+    "selected_threshold": 0.7,
+    "selection_method": "explicit_user_choice",
+    "weights_sha256": "aef3ce71f6dfc1be8c58fd600169b1454543e18f37182932f548674322f18909"
+  },
+  "estimated_unique_observed": 18,
+  "limitations": [
+    "Estimated distinct sightings; detection and association errors remain possible.",
+    "Sparse photographs do not verify complete property coverage.",
+    "Different flights and capture dates are reported separately, never summed as one herd."
+  ],
+  "processed_images": 2,
+  "schema": 1,
+  "source": "model_predictions",
+  "status": "needs_edge_recapture",
+  "surveys": [
+    {
+      "estimated_unique_observed": 18,
+      "images": 2,
+      "raw_observations": 30,
+      "repeated_observations_removed": 12,
+      "status": "needs_edge_recapture",
+      "survey": "Mauron/DJI_202311071416_061 / 2023-11-07",
+      "unresolved_clipped_tracks": 1,
+      "verified_overlap_pairs": 1
+    }
+  ],
+  "context": {
+    "business_scenario": "Illustrative agricultural lender review; not an actual lending pilot",
+    "technical_evidence": "Actual saved two-photo CPU pipeline run",
+    "run_date": "2026-09-06",
+    "review_status": "Unreviewed model output",
+    "next_action": "Review sightings and obtain a clearer view of the unresolved edge capture",
+    "source_document": "MODEL_DEFAULT.md and validation/counting/pipeline-smoke-20260906/result.json",
+    "imagery_credit": "Louise Helary and Adrien Lebreton / Institut de l\u2019Elevage, ICAERUS grazing-cow v2, CC BY 4.0, https://doi.org/10.5281/zenodo.11048412"
+  }
+}

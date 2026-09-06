@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "name": "Cow mesh and textures",
+      "author": "Lyndon Daniels (lyndon)",
+      "source": "https://opengameart.org/content/realtime-ranchers-3d-model-pack",
+      "license": "CC0-1.0",
+      "license_verified": "2026-09-06",
+      "model_sha256": "f9267da984bcc0981b2792cb1df7a9c42fb2fc4d44a06991aa07758f60696e5c",
+      "normal_sha256": "655aa38346e13c7ce3b1353b5cafc4e47d8c42973ef818c666d5fb4b268fc039",
+      "modifications": "Existing OBJ/material conversion to GLB; runtime metre scaling, local skeleton, seam smoothing and coat recoloring. Normal map bytes match the source pack."
+    },
+    {"name": "Three.js", "version": "0.180.0", "license": "MIT", "source": "https://github.com/mrdoob/three.js"},
+    {"name": "Rapier JavaScript compatibility package", "version": "0.17.3", "license": "Apache-2.0", "source": "https://github.com/dimforge/rapier.js"},
+    {"name": "ICAERUS drone photographs", "author": "Louise Helary and Adrien Lebreton / Institut de l'Elevage", "license": "CC-BY-4.0", "source": "https://zenodo.org/records/11048412", "note": "Image hashes are recorded in each input and output manifest. Crops, masks and repaired textures are derived works."},
+    {"name": "IGN terrain and reference orthophotos", "license": "Licence Ouverte 2.0", "source": "https://cartes.gouv.fr/", "note": "Exact crop URLs, dimensions and hashes are in each source manifest."}
+  ]
+}

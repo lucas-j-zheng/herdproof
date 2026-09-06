@@ -1,0 +1,7 @@
+{
+  "name": "herdproof-world-viewer",
+  "private": true,
+  "type": "module",
+  "scripts": {"check": "node --check app.js && node --check review.js && node --check api.js && node --check terrain.js && node --check coat.js", "test": "node test_world.mjs"},
+  "dependencies": {"three": "0.180.0", "@dimforge/rapier3d-compat": "0.17.3"}
+}

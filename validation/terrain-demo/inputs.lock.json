@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "files": {
+    "../data/46472379c810.jpg": "0c3f846a459e5b7fd6cf49dfbe5e2880feab8392a5e095ee3bb88411398f897c",
+    "../runs/finetuned/demo.json": "ff718c7602cb8600efaaa2f6e35c17f2a2d344a4f0a03f0309bd63d9a2c194cb",
+    "assets/cow-normal.png": "655aa38346e13c7ce3b1353b5cafc4e47d8c42973ef818c666d5fb4b268fc039",
+    "assets/cow-original.glb": "f9267da984bcc0981b2792cb1df7a9c42fb2fc4d44a06991aa07758f60696e5c",
+    "camera-calibration.json": "7c9fa9b15f11e2ba9e3209a7934aa29402cf109dc62eeacd257c1411b3ea778e",
+    "cow-review.json": "c2322f2729894db5d91a087eb6bf1445bd33f2a319b529568fcbd7224f1c604b",
+    "data/ign/reference-ortho.jpg": "478e7c4873d14e5190248e826b2b72c2aa63b3e8b3280d9650d26b9a375e86b0",
+    "data/ign/source-manifest.json": "1372666e4a00d13d10146039541b71ea17a406cf133eb89a025199649118304b",
+    "data/ign/terrain.tif": "234b51da33d5f17f8fbe431916a9fef8576fd4b9275f62171b1b4c398d71ad2e",
+    "features.json": "7fc48f411468e24ea89220264a99cef5524adac53cc030cea6ff76855776e13b",
+    "landmarks.json": "f7e6b942726bc986c8d7a01f9f800563f79a87463928fe9b44cb4c582ba34b72",
+    "project.json": "523b32650ee1914c87a040fc1a8610538d8064bef75ed8d8a6a4a07f1f68a927",
+    "texture-masks.json": "2fc06d33b855fe2a06fa7a7bc1a4b9824e636530bd5ba1749fe9ca6a9f2008f9"
+  }
+}

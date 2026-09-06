@@ -1,0 +1,18 @@
+[project]
+name = "herdproof-validation"
+version = "0.1.0"
+description = "Reproducible aerial cattle counting validation and assisted review"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "ultralytics==8.3.200",
+  "torch==2.8.0",
+  "torchvision==0.23.0",
+  "numpy==2.2.6",
+  "opencv-python==4.12.0.88",
+  "pillow==11.3.0",
+  "scipy==1.16.1",
+  "matplotlib==3.10.6",
+]
+
+[tool.uv]
+exclude-newer = "2026-08-22T00:00:00Z"

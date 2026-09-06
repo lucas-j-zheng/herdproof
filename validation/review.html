@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HerdProof · Validation lab</title>
+<style>
+[hidden]{display:none!important}
+:root{--paper:#e7ebe9;--sheet:#f5f7f6;--rule:#c9d2ce;--line:#c9d2ce;--ink:#16201f;--ink-2:#5c6b68;--teal:#0e6b6b;--teal-d:#0a5252;--amber:#c77a12;--amber-ink:#8a5409;--alarm:#9e2a1b;--wash:#dde3e0;--ui:'Avenir Next',Avenir,'Nimbus Sans','Segoe UI',system-ui,sans-serif;--data:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-family:var(--ui);font-size:15px;color:var(--ink);background:var(--paper)}*{box-sizing:border-box}body{margin:0;background:var(--paper)}header{display:flex;align-items:center;justify-content:space-between;gap:24px;height:52px;padding:0 max(24px,calc((100vw - 1320px)/2));border-bottom:1px solid var(--rule);background:var(--sheet)}.brand{font-size:17px;font-weight:600;letter-spacing:-.3px}.brand span{color:var(--teal)}.tag{font-size:12.5px;color:var(--ink-2)}main{max-width:1320px;margin:0 auto;padding:26px 24px 48px}nav{display:flex;gap:4px;margin-bottom:24px;border-bottom:1px solid var(--rule)}button{font:inherit;border:1px solid var(--rule);border-radius:2px;background:var(--sheet);color:var(--ink);padding:8px 12px;font-size:13.5px;line-height:1.3;cursor:pointer}button:hover{background:var(--wash);border-color:var(--ink-2)}button:disabled{opacity:.42;cursor:default}button.active,button.primary{background:var(--teal);border-color:var(--teal);color:#fff;font-weight:500}nav button{border:0;border-radius:0;background:none;padding:10px 14px;color:var(--ink-2);margin-bottom:-1px}nav button:hover{background:none;color:var(--teal)}nav button.active{background:none;color:var(--ink);font-weight:600;border-bottom:2px solid var(--teal)}:focus-visible{outline:2px solid var(--amber);outline-offset:2px}a{color:var(--teal)}h1{font-size:29px;font-weight:500;letter-spacing:-.6px;line-height:1.15;margin:10px 0 12px}h2{font-size:17px;font-weight:600;letter-spacing:-.2px;margin:0 0 10px}h3{font-size:14.5px;font-weight:600;margin:0}p{line-height:1.55;margin:8px 0}.muted{color:var(--ink-2)}.intro{font-size:14px;max-width:74ch}.step{font-size:12.5px;color:var(--ink-2)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.card{background:var(--sheet);border:1px solid var(--rule);border-radius:2px;padding:18px}.value{font-size:34px;font-weight:500;letter-spacing:-1px;font-variant-numeric:tabular-nums;margin:8px 0;font-family:var(--data)}.label{font-size:12.5px;color:var(--ink-2);line-height:1.45}.note{background:var(--sheet);border-left:2px solid var(--teal);padding:11px 14px;font-size:13.5px;line-height:1.55;margin:14px 0}.warning{border-left-color:var(--amber);background:#f6f2ea}table{width:100%;border-collapse:collapse;font-size:13.5px}td,th{text-align:left;border-bottom:1px solid var(--rule);padding:10px 8px}th{font-size:12.5px;color:var(--ink-2);font-weight:600}td.num,td:nth-child(n+2){font-variant-numeric:tabular-nums}section[hidden]{display:none}.toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0}.spacer{flex:1}.badge{font-size:12.5px;padding:3px 8px;background:var(--wash);border-radius:2px;color:var(--ink-2)}.pill{font-size:12.5px;padding:3px 8px;border:1px solid var(--rule);border-radius:2px;color:var(--ink-2);font-family:var(--data)}.qa{color:var(--amber-ink)}.viewport{position:relative;overflow:auto;height:560px;background:#1d2a27;border:1px solid var(--rule);border-radius:2px}.image-wrap{position:relative;line-height:0}.image-wrap img{display:block;width:100%;height:auto}.image-wrap svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.blank{min-height:360px;display:grid;place-items:center;color:#b6c6c1;padding:40px;line-height:1.6}.columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--data);font-size:12px;line-height:1.55;background:var(--paper);padding:12px;border-radius:2px;max-height:320px;overflow:auto}.error{color:var(--alarm);font-size:13.5px;margin:0}.error:empty{display:none}.footer{font-size:12px;color:var(--ink-2);line-height:1.65}.synthetic{display:inline-block;font-size:12px;color:var(--amber-ink);margin-bottom:8px}.trial-info{display:flex;align-items:baseline;justify-content:space-between;gap:16px}#clock{font-family:var(--data);font-variant-numeric:tabular-nums;font-size:25px}.demo-photo{position:relative;overflow:hidden;border-radius:2px}.demo-photo img{width:100%;display:block}.demo-photo .mask{position:absolute;top:0;bottom:0;left:50%;right:0;display:grid;place-items:center;background:repeating-linear-gradient(135deg,#1d2a27ee,#1d2a27ee 10px,#27403aee 10px,#27403aee 20px);color:#fff;font-size:13.5px;text-align:center;padding:15px}.divider{position:absolute;left:50%;top:0;bottom:0;border-left:2px dashed #fff}.region{position:absolute;top:12px;padding:4px 8px;background:#16201fd0;color:#fff;border-radius:2px;font-size:12px}.west{left:12px}.east{left:calc(50% + 12px)}.default-model{border:1px solid var(--rule);border-left:2px solid var(--teal);border-radius:2px;background:var(--sheet);padding:18px 20px;margin:18px 0}.default-model .cards{margin:14px 0 12px}.default-model .card{background:var(--paper)}.dm-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap}.dm-head h2{margin:0}.stale{border-left-color:var(--amber)}@media(max-width:800px){.cards,.columns{grid-template-columns:1fr}h1{font-size:24px}nav button{padding:9px 10px;font-size:12.5px}.viewport{height:450px}header{height:auto;padding:12px 16px;flex-wrap:wrap;gap:8px}.tag{font-size:12px}table{font-size:12.5px}td,th{padding:8px 6px}}@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.editor-controls{position:sticky;top:0;z-index:3;background:var(--paper);padding:1px 0;border-bottom:1px solid var(--line)}.editor-controls .toolbar{margin:10px 0}
+</style>
+</head>
+<body>
+<header><div class="brand">Herd<span>Proof</span></div><div class="tag">Validation lab · September 2026</div></header>
+<main>
+<nav aria-label="Sections"><button class="active" data-tab="benchmark">Benchmark</button><button data-tab="review">Timed review</button><button data-tab="demo">Reconciliation example</button></nav>
+<p id="error" class="error" role="alert"></p>
+<section id="benchmark">
+<div class="step">01 / Test the core</div><h1>Does the count hold up?</h1>
+<p class="intro muted">Real aerial images. Flights held out from threshold selection. Scores below compare proposals with the supplied annotations.</p>
+<div class="note warning"><strong>Reference labels need repair.</strong> A source image with an empty annotation file contains visible cattle. These scores are provisional agreement with supplied labels, not verified accuracy. An empty label file does not establish an empty scene.</div>
+<div id="benchmark-content"><div class="note">The benchmark is running. Results will appear when every selected image has been scored.</div></div>
+<button class="primary" data-tab="review">Try the review comparison →</button>
+</section>
+<section id="review" hidden>
+<div class="step">02 / Measure the work</div><h1>Four images. Two ways to review.</h1>
+<p class="intro muted">Mark each visible cow once. Manual trials start empty; assisted trials start with AI markers. Use Add to mark a cow and Remove to delete a marker. Zoom into crowded groups and inspect the entire image before finishing.</p>
+<div class="note">Use this tab before opening the reconciliation example. Each trial uses a different flight. Reference labels stay hidden until all four trials are complete. Time pauses while the tab is hidden.</div>
+<div class="note warning">Mark every visible cow, even if you suspect it is missing from the source annotations. Results compare your marks with provisional reference labels; disagreements are not automatically human mistakes.</div>
+<p id="qa-notice"></p><div id="review-start"><button id="start-session" class="primary">Start four-image review</button><p class="muted label">Your results are stored locally. One participant provides exploratory evidence, not a general claim of time saved.</p></div>
+<div id="trial" hidden>
+<div class="trial-info"><h2 id="trial-title"></h2><span id="clock">0:00</span></div>
+<div id="editor-controls" class="editor-controls"><div class="toolbar"><span class="badge" id="condition"></span><span id="marker-count" class="pill">0 marked</span><div class="spacer"></div><button id="tool-add" class="active" aria-pressed="true">Add</button><button id="tool-remove" aria-pressed="false">Remove</button><button id="undo">Undo</button><button id="toggle-markers" aria-pressed="true">Hide markers</button></div>
+<div class="toolbar"><label for="zoom">Zoom</label><input id="zoom" type="range" min="100" max="1600" step="1" value="100"><output id="zoom-value" for="zoom">100%</output><button id="actual-size">1:1 pixels</button><span id="tool-hint" class="muted label" role="status">Add: every click places a marker. A nearby marker will stay in place.</span></div>
+</div>
+<div class="viewport" id="viewport"><div class="blank" id="waiting">Preparing image…</div><div class="image-wrap" id="image-wrap" hidden><img id="review-image" alt="Aerial cattle image for counting" draggable="false"><svg id="markers" aria-hidden="true"></svg></div></div>
+<div class="toolbar"><button id="begin-trial" class="primary" disabled>Begin timed review</button><button id="finish-trial" class="primary" hidden>Finish this image</button><span class="muted label">Review time excludes loading. Inspect empty areas too.</span></div>
+<p class="muted label">A: Add · R: Remove · H: hide/show markers · ⌘/Ctrl+Z: Undo. Zoom cannot reveal a cow hidden behind another one; do not invent marks for animals you cannot see.</p>
+</div><div id="trial-results"></div>
+</section>
+<section id="demo" hidden>
+<div class="step">03 / Resolve missing evidence</div><h1>Turn a count into a reviewable answer.</h1>
+<p class="intro muted">This example links an inventory record, a documented sale, and image evidence. An unobserved area remains unresolved until its evidence is supplied.</p>
+<div class="note warning" id="demo-disclosure">Loading example…</div>
+<div id="demo-content" hidden><div class="columns"><div><div class="demo-photo"><img id="demo-image" alt="Real pasture image divided into two illustrative areas"><div class="divider"></div><span class="region west">West area</span><span class="region east">East area</span><div class="mask" id="east-mask">East image evidence<br>not yet supplied</div></div><div class="toolbar"><button id="advance-demo" class="primary">Replay West reference review</button><button id="reset-demo">Reset</button></div><p class="muted label" id="demo-model-counts"></p></div><div class="card"><span class="synthetic">SYNTHETIC BUSINESS RECORDS</span><h2>Reported inventory & movement</h2><pre id="source-csv"></pre><div id="demo-status"></div></div></div><div class="card" style="margin-top:22px"><h2>Evidence ledger</h2><table><thead><tr><th>Area</th><th>Expected</th><th>Observed</th><th>Difference</th><th>Next action</th></tr></thead><tbody id="ledger"></tbody></table></div></div>
+</section>
+<p class="footer">Imagery: Louise Helary and Adrien Lebreton, Institut de l’Elevage · ICAERUS grazing cows v2 · <a href="https://doi.org/10.5281/zenodo.11048412" target="_blank" rel="noreferrer">dataset</a> · CC BY 4.0. Review images were re-encoded without location metadata. Visible observations do not establish ownership, unique animal identity, or whole-property coverage.</p>
+</main>
+<script src="/marker-tools.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const qa=new URLSearchParams(location.search).get('qa')==='1';
+const REVIEW_UI_VERSION='2';
+let editTool='add', markersVisible=true;
+let activeTab='benchmark', session=null, trials=[],trialIndex=0,points=[],history=[],timing=false,activeSeconds=0,lastTick=0,demo=null,demoStep=0;
+const fail=e=>{$('error').textContent=e.message||String(e)};
+async function api(path,body){const r=await fetch(path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});const data=await r.json();if(!r.ok)throw Error(data.error||'Request failed');return data}
+function tab(name){if(timing)return fail(Error('Finish the current timed image before changing sections.'));activeTab=name;for(const id of ['benchmark','review','demo'])$(id).hidden=id!==name;document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));if(name==='demo')loadDemo().catch(fail)}
+document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
+function percent(x){return x===null?'—':(100*x).toFixed(1)+'%'}
+function defaultModelBlock(r){const d=r.default_model,m=d&&d.metrics;if(!m)return '<div class="note warning">Model metrics are unavailable. If the page was just updated, restart the local server so it reloads.</div>';return `<div class="default-model"><div class="dm-head"><h2>Current default detector</h2><span class="pill">${d.model_id} at confidence ${d.confidence}</span></div><div class="cards"><div class="card"><div class="label">Precision</div><div class="value">${percent(m.precision)}</div><div class="label">${m.matched} of ${m.predicted} detections matched a label</div></div><div class="card"><div class="label">Recall</div><div class="value">${percent(m.recall)}</div><div class="label">${m.matched} of ${m.annotated} annotations found</div></div><div class="card"><div class="label">F1</div><div class="value">${percent(m.f1)}</div><div class="label">Count MAE ${m.count_mae} cows per image</div></div></div><p class="muted label">Recorded over ${m.images} images and ${m.annotated} annotations. Source: ${m.source}. ${m.recomputed_locally?'':'Not recomputed on this machine. '}${m.local_reproduction} ${m.status}</p></div>`}
+async function loadSummary(){const r=await api('/api/summary');if(r.status!=='ready')return;$('benchmark-content').innerHTML=defaultModelBlock(r)}
+loadSummary().catch(fail);
+if(qa){$('qa-notice').textContent='AUTOMATED QA SESSION — excluded from human timing evidence';$('qa-notice').className='qa'}
+function tick(){const now=performance.now();if(timing&&!document.hidden)activeSeconds+=(now-lastTick)/1000;lastTick=now;const s=Math.floor(activeSeconds);$('clock').textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+setInterval(tick,200);document.addEventListener('visibilitychange',()=>{lastTick=performance.now()});
+function draw(){
+  const img=$('review-image'),svg=$('markers'),w=img.naturalWidth,h=img.naturalHeight;
+  if(!w||!h)return;
+  svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+  svg.style.visibility=markersVisible?'visible':'hidden';
+  const scale=w/Math.max(1,img.clientWidth),radius=3.5*scale;
+  svg.replaceChildren();
+  for(const [x,y]of points){
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',x*w);c.setAttribute('cy',y*h);c.setAttribute('r',radius);
+    c.setAttribute('fill','#42f5a1');c.setAttribute('fill-opacity','.12');
+    c.setAttribute('stroke','#42f5a1');c.setAttribute('stroke-width',1.5*scale);svg.append(c);
+  }
+  $('marker-count').textContent=points.length+' marked';
+}
+function sizeImage(preserveCenter=true){
+  const v=$('viewport'),wrap=$('image-wrap'),oldWidth=wrap.offsetWidth;
+  const cx=oldWidth?(v.scrollLeft+v.clientWidth/2)/oldWidth:0;
+  const cy=oldWidth?(v.scrollTop+v.clientHeight/2)/oldWidth:0;
+  const width=v.clientWidth*Number($('zoom').value)/100;
+  wrap.style.width=width+'px';
+  if(preserveCenter&&oldWidth)v.scrollTo(cx*width-v.clientWidth/2,cy*width-v.clientHeight/2);
+  $('zoom-value').value=$('zoom').value+'%';
+  $('zoom').setAttribute('aria-valuetext',$('zoom').value+' percent');draw();
+}
+function setTool(tool){
+  editTool=tool;
+  for(const t of ['add','remove']){$('tool-'+t).classList.toggle('active',t===tool);$('tool-'+t).setAttribute('aria-pressed',String(t===tool));}
+  $('review-image').style.cursor=tool==='add'?'crosshair':'pointer';
+  $('tool-hint').textContent=tool==='add'?'Add: every click places a marker. A nearby marker will stay in place.':'Remove: click the marker you want to delete. The closest marker is selected.';
+}
+$('tool-add').onclick=()=>setTool('add');$('tool-remove').onclick=()=>setTool('remove');
+$('toggle-markers').onclick=()=>{markersVisible=!markersVisible;$('toggle-markers').textContent=markersVisible?'Hide markers':'Show markers';$('toggle-markers').setAttribute('aria-pressed',String(markersVisible));draw()};
+$('zoom').oninput=()=>sizeImage();
+$('actual-size').onclick=()=>{$('zoom').value=Math.max(100,Math.min(1600,Math.round($('review-image').naturalWidth/$('viewport').clientWidth*100)));sizeImage()};
+window.addEventListener('resize',()=>{if(!$('trial').hidden)sizeImage()});
+document.addEventListener('keydown',e=>{
+  if(!timing||['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;
+  const key=e.key.toLowerCase();
+  if((e.metaKey||e.ctrlKey)&&key==='z'){e.preventDefault();$('undo').click();return;}
+  if(e.metaKey||e.ctrlKey||e.altKey)return;
+  if(key==='a')setTool('add');if(key==='r')setTool('remove');if(key==='h')$('toggle-markers').click();
+});
+$('start-session').onclick=async()=>{try{$('start-session').disabled=true;const r=await api('/api/start',{participant_type:qa?'automated_qa':'human',ui_version:REVIEW_UI_VERSION});session=r.session;trials=r.trials;trialIndex=0;$('review-start').hidden=true;$('trial').hidden=false;await prepareTrial()}catch(e){$('start-session').disabled=false;fail(e)}};
+async function prepareTrial(){const t=trials[trialIndex];points=t.points.map(p=>p.slice());setTool('add');markersVisible=true;$('toggle-markers').textContent='Hide markers';$('toggle-markers').setAttribute('aria-pressed','true');$('zoom-value').value='100%';$('marker-count').textContent=points.length+' marked';history=[];timing=false;activeSeconds=0;tick();$('trial-title').textContent=`Image ${trialIndex+1} of ${trials.length}`;$('condition').textContent=t.mode==='manual'?'Manual · mark from scratch':'Assisted · correct AI proposals';$('image-wrap').hidden=true;$('waiting').hidden=false;$('waiting').textContent='Preparing image…';$('begin-trial').hidden=false;$('begin-trial').disabled=true;$('finish-trial').hidden=true;$('zoom').value=100;
+const img=$('review-image');await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(Error('Could not load review image'));img.src='/images/'+t.image_id+'.jpg'});$('waiting').textContent='Image ready. Begin when you are ready to inspect it.';$('begin-trial').disabled=false}
+$('begin-trial').onclick=async()=>{try{$('begin-trial').disabled=true;await api('/api/begin',{session,index:trialIndex});$('waiting').hidden=true;$('image-wrap').hidden=false;sizeImage(false);$('viewport').scrollTo(0,0);$('begin-trial').hidden=true;$('finish-trial').hidden=false;timing=true;lastTick=performance.now();$('editor-controls').scrollIntoView({block:'start'})}catch(e){$('begin-trial').disabled=false;fail(e)}};
+$('review-image').onclick=e=>{
+  if(!timing)return;
+  if(!markersVisible)return fail(Error('Show markers before editing.'));
+  const rect=e.target.getBoundingClientRect(),position=[(e.clientX-rect.left)/rect.width,(e.clientY-rect.top)/rect.height];
+  const next=MarkerTools.edit(points,position,editTool,rect.width,rect.height);
+  if(next===points)return;
+  $('error').textContent='';history.push(points.map(p=>p.slice()));points=next;draw();
+};
+$('undo').onclick=()=>{if(timing&&history.length){points=history.pop();draw()}};
+$('finish-trial').onclick=async()=>{try{$('finish-trial').disabled=true;tick();const seconds=activeSeconds;timing=false;const r=await api('/api/finish',{session,index:trialIndex,points,active_seconds:seconds});if(r.complete){$('trial').hidden=true;showResults(r)}else{trialIndex++;await prepareTrial()}}catch(e){timing=true;lastTick=performance.now();fail(e)}finally{$('finish-trial').disabled=false}};
+function showResults(r){$('trial-results').innerHTML=`<div class="card"><h2>${qa?'QA complete':'Review complete'}</h2><table><thead><tr><th>Image</th><th>Condition</th><th>Active time</th><th>Marked / reference</th><th>Unmatched marks / labels*</th></tr></thead><tbody>${r.results.map((x,i)=>`<tr><td>${i+1}</td><td>${x.mode}</td><td>${x.active_seconds.toFixed(1)} s</td><td>${x.accuracy.marked} / ${x.accuracy.reference}</td><td>${x.accuracy.false_marks} / ${x.accuracy.missed}</td></tr>`).join('')}</tbody></table><p class="muted">${r.interpretation}</p><button id="export-session">Download results</button></div>`;$('export-session').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({session,participant_type:qa?'automated_qa':'human',...r},null,2)],{type:'application/json'}));a.download='herdproof-review-'+session+'.json';a.click();URL.revokeObjectURL(a.href)}}
+async function loadDemo(){if(!demo){demo=await api('/api/demo');$('demo-disclosure').textContent=demo.disclosure;$('demo-image').src='/images/'+demo.image_id+'.jpg';$('source-csv').textContent=demo.csv;$('demo-content').hidden=false}drawDemo()}
+function drawDemo(){const stage=['initial','west_reference_review','east_supplied_unreviewed','both_reference_reviews'][demoStep];const r=demo.stages[stage];$('east-mask').style.display=demoStep>=2?'none':'grid';$('advance-demo').textContent=['Replay West reference review','Supply East image evidence','Replay East reference review','Reconciliation complete'][demoStep];$('advance-demo').disabled=demoStep===3;$('demo-model-counts').textContent=`Raw model proposals: West ${demo.model_counts.West}, East ${demo.model_counts.East}. Reference-review steps use publisher annotations; model results are not silently treated as correct.`;$('demo-status').innerHTML=`<span class="badge">${r.status==='incomplete'?'More evidence required':'Reference example reconciled'}</span><p>Expected: <strong>${r.expected_total}</strong> cattle<br>Reviewed total: <strong>${r.observed_total===null?'Unresolved':r.observed_total}</strong></p>`;$('ledger').innerHTML=r.pens.map(p=>`<tr><td>${p.pen}</td><td>${p.expected}</td><td>${p.observed===null?'—':p.observed+(p.status==='incomplete'?' (proposal)':'')}</td><td>${p.difference===null?'Unresolved':p.difference}</td><td>${p.next_action}<br><span class="muted label">Source CSV lines ${p.source_lines.join(', ')}</span></td></tr>`).join('')}
+$('advance-demo').onclick=()=>{if(demoStep<3){demoStep++;drawDemo()}};$('reset-demo').onclick=()=>{demoStep=0;drawDemo()};
+</script>
+</body>
+</html>
