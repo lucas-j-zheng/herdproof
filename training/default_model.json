@@ -16,5 +16,22 @@
   "max_detections_per_tile": 1000,
   "default_output": "validation/runs/default-model",
   "selected_by": "User choice on 2026-09-06: approximately 82% precision and 78% recall",
-  "benchmark_status": "Exploratory previously inspected test benchmark with provisional labels; not fresh blind validation"
+  "benchmark_status": "Exploratory previously inspected test benchmark with provisional labels; not fresh blind validation",
+  "recorded_metrics": {
+    "precision": 0.819192,
+    "recall": 0.779059,
+    "f1": 0.798621,
+    "count_mae": 3.03,
+    "images": 77,
+    "annotated": 1041,
+    "predicted": 990,
+    "matched": 811,
+    "unmatched_predictions": 179,
+    "missed_annotations": 230,
+    "confidence": 0.7,
+    "source": "validation/oscar-results-v2-2026-09-05 saved predictions, rescored at confidence 0.70 on Oscar",
+    "recomputed_locally": false,
+    "local_reproduction": "Not possible on this machine: the prepared 77-image benchmark labels are not present locally (local evaluation split is a different set of 92 images / 1065 annotations).",
+    "status": "Exploratory threshold comparison on a previously inspected public test benchmark with provisional labels. Not fresh blind validation."
+  }
 }
