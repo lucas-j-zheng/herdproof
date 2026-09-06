@@ -11,7 +11,8 @@ validation/train-data/
 validation/calibration-sanity.json
 validation/*.log
 
-# Publish only the runnable training package. Research and local artifacts stay private.
+# Publish the training package and explicitly selected survey scripts.
+# Research, local artifacts, and all other scripts stay private.
 /*
 !/.gitignore
 !/training/
@@ -26,6 +27,13 @@ validation/*.log
 !/training/slurm/
 /training/slurm/*
 !/training/slurm/*.sh
+
+!/scripts/
+/scripts/*
+!/scripts/aerial_survey.py
+!/scripts/evaluate_overlap_edges.py
+!/scripts/test_aerial_survey.py
+!/scripts/test_aerial_survey_images.py
 
 # Never publish prose notes, data, credentials, or generated model artifacts.
 **/*.[mM][dD]

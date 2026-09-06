@@ -27,6 +27,56 @@ These results come from rescoring the saved predictions on 77 images containing 
 
 ## Pipeline
 
+Use `training.count` for the complete counting pipeline:
+
+```text
+Original drone photos
+  -> selected YOLO model + per-image tile duplicate removal
+  -> background alignment between overlapping photos
+  -> compare cow observations within the shared visible area
+  -> merge repeated sightings across photos
+  -> estimated distinct cows + preferred views + unresolved edge captures
+```
+
+```sh
+# Detect and deduplicate one original-photo folder in one command:
+.venv/bin/python -m training.count \
+  --data /path/to/photos --flight-id pasture-visit \
+  --output validation/counting/pasture-visit --device cpu
+
+# A manifest can describe multiple flights; each flight/date is counted separately:
+.venv/bin/python -m training.count \
+  --data validation/data --output validation/counting/survey --device cpu
+
+# Rerun only overlap matching using an existing detector run:
+.venv/bin/python -m training.count \
+  --data validation/data --predictions validation/runs/default-model \
+  --output validation/counting/from-saved
+```
+
+The input can be an original photo, a flat folder of photos, or a folder containing
+`manifest.json`. Original GPS and capture-time metadata are required. Plain folders
+are treated as one flight; use a manifest for multiple flights. Capture dates stay
+separate. Optional `--image-ids` selects a smaller group, and `--weights` locates the
+same SHA-pinned checkpoint elsewhere. Annotations are removed from the pipeline's
+input manifest before inference and are never used as a prediction fallback.
+
+The output folder contains `inputs/manifest.json`, `detections/` for new inference,
+`overlap/report.json` with tracks and edge evidence, and the final `result.json`.
+For one flight/date, `result.json.estimated_unique_observed` contains its estimate.
+With multiple surveys that field is null; use the separate `surveys` results.
+The pipeline refuses to reuse an output folder with changed inputs or settings,
+and writes the final result only after both stages process all selected photos.
+
+Cross-photo matching handles partially clipped cows using their shared visible
+portion. An existing full view resolves an edge sighting; an unresolved clipped
+track remains in `recapture_targets`, with status `needs_edge_recapture`. Totals are
+estimates of distinct observed animals, not verified whole-property herd inventories.
+The controlled edge benchmark and its separate set pass 192 cases / 1,293 known
+duplicate links; these assess supplied-box geometry rather than detector accuracy.
+
+For detections alone, the original inference commands remain available:
+
 `scripts/aerial_infer.py` now uses this configuration by default. It verifies the exact weight checksum and uses the same native tiling, class filter and NMS stages as the Oscar evaluator. It never falls back to another checkpoint or uses annotations for inference.
 
 ```sh
@@ -52,8 +102,23 @@ The overlap/survey pipeline can consume the new run explicitly:
 
 On Oscar, run inference only inside an `sbatch`/`srun` GPU allocation with `--device 0`. Set `HERDPROOF_ROOT=/oscar/scratch/lzheng35/herdproof` to resolve the existing pinned checkpoint, or supply its exact path with `--weights`. Do not run inference or dataset loading on a login node.
 
+The same SLURM requirement applies to `training.count`, including runs that reuse
+predictions: background registration is compute work too.
+
 Existing benchmark, timed-review and terrain-scene outputs retain their original predictions and review provenance. Changing the default governs **new inference**; it does not silently relabel cached scenes as results from this model. Historical COCO reproduction remains available with `scripts/aerial_infer.py --baseline`.
 
 ## Verification
+
+The integrated `training.count` command passes nine contract tests covering stage
+ordering, saved predictions, annotation exclusion, flight/date separation,
+failure handling and the login-node guard. The overlap stage passes 30 regression
+tests in the local dataset environment.
+
+A complete CPU run on `752332ce22a7` and `90afc33b02c0` used the pinned model at
+confidence 0.70, produced 30 detections, and removed 12 repeated sightings after
+registration. The resulting 18 proposed tracks include an unresolved clipped
+sighting and are reported with `needs_edge_recapture`; this tests the pipeline
+handoff and is not a verified 18-cow ground-truth count. Local output is
+`validation/counting/pipeline-smoke-20260906/result.json`.
 
 All 41 inference, pipeline, runtime and tuning tests passed. A real full-resolution image (`46472379c810`) produced 22 detections at the default threshold through `scripts/aerial_infer.py` on CPU. All 22 boxes matched the saved Oscar detections at IoU ≥ 0.99, with maximum confidence difference 0.000101. The survey consumer accepted the new output and counted the same 22 detections. Evidence is recorded in `validation/default-model-smoke-2026-09-06/verification.json`.
