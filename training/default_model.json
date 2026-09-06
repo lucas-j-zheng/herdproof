@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "model_id": "corrected-full-yolov8n-v2",
+  "mode": "tiled-corrected-full-v2",
+  "checkpoint": "validation/models/herdproof-yolov8n-v2.pt",
+  "oscar_checkpoint": "runs/native1024-v2/yolov8n/fit/weights/best.pt",
+  "checkpoint_sha256": "aef3ce71f6dfc1be8c58fd600169b1454543e18f37182932f548674322f18909",
+  "class_id": 0,
+  "confidence": 0.7,
+  "global_nms_iou": 0.5,
+  "tile_nms_iou": 0.9,
+  "inference_confidence_floor": 0.05,
+  "tile_size": 1024,
+  "tile_overlap": 0.2,
+  "model_imgsz": 1024,
+  "max_detections_per_tile": 1000,
+  "default_output": "validation/runs/default-model",
+  "selected_by": "User choice on 2026-09-06: approximately 82% precision and 78% recall",
+  "benchmark_status": "Exploratory previously inspected test benchmark with provisional labels; not fresh blind validation"
+}

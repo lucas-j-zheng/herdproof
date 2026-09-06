@@ -6,6 +6,8 @@ import os
 import shutil
 import socket
 import subprocess
+import tempfile
+from contextlib import contextmanager
 from pathlib import Path
 
 PACKAGE = Path(__file__).resolve().parent
@@ -24,7 +26,40 @@ def read_json(path: Path):
 
 
 def write_json(path: Path, value):
-    path.write_text(json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n")
+    text = json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n"
+    with atomic_output(path) as temporary:
+        temporary.write_text(text)
+
+
+@contextmanager
+def atomic_output(path: Path):
+    """Publish a complete file on the same filesystem, retaining the old file on failure."""
+    fd, name = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+    os.close(fd)
+    temporary = Path(name)
+    try:
+        yield temporary
+        with temporary.open("rb") as stream:
+            os.fsync(stream.fileno())
+        temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+@contextmanager
+def exclusive_lock(path: Path):
+    """Kernel-owned lock: a killed process releases it without a stale start marker."""
+    import fcntl
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a+") as stream:
+        try:
+            fcntl.flock(stream, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError as exc:
+            raise RuntimeError(f"Another process owns this stage: {path}") from exc
+        try:
+            yield
+        finally:
+            fcntl.flock(stream, fcntl.LOCK_UN)
 
 
 def load_config(path: Path = PACKAGE / "config.json"):
