@@ -46,6 +46,11 @@ def atomic_output(path: Path):
         temporary.unlink(missing_ok=True)
 
 
+def atomic_copy(source: Path, destination: Path):
+    with atomic_output(destination) as temporary:
+        shutil.copyfile(source, temporary)
+
+
 @contextmanager
 def exclusive_lock(path: Path):
     """Kernel-owned lock: a killed process releases it without a stale start marker."""

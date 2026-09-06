@@ -4,9 +4,10 @@ import argparse
 from pathlib import Path
 
 from training.common import (PACKAGE, code_fingerprint, configure_runtime, cuda_environment,
-                             digest, load_config, read_json, verify_prepared, write_json)
+                             digest, exclusive_lock, load_config, read_json, verify_prepared, write_json)
 from training.data import native_crop, starts
 from training.metrics import matched_count, summarize
+from training.runtime import ensure_finite
 
 
 def global_nms(predictions, threshold):
@@ -18,15 +19,24 @@ def global_nms(predictions, threshold):
     return tensor[nms(tensor[:, :4], tensor[:, 4], threshold)].tolist()
 
 
-def predict_sources(checkpoint, source, records, config):
+def predict_sources(checkpoint, source, records, config, cache=None):
     from PIL import Image
     from ultralytics import YOLO
-    model = YOLO(str(checkpoint))
+    model = None
+    if cache is not None:
+        cache.mkdir(parents=True, exist_ok=True)
     output = {}
     for index, row in enumerate(records):
         path = source / row["image"]
         if digest(path) != row["image_sha256"] or digest(source / row["label"]) != row["label_sha256"]:
             raise ValueError(f"Source data changed: {row['image']}")
+        cached = cache / (row["id"] + ".json") if cache is not None else None
+        if cached is not None and cached.exists():
+            output[row["id"]] = read_json(cached)
+            ensure_finite(output[row["id"]], "cached predictions")
+            continue
+        if model is None:
+            model = YOLO(str(checkpoint))
         with Image.open(path) as original:
             image = original.convert("RGB")
         width, height = image.size
@@ -37,12 +47,15 @@ def predict_sources(checkpoint, source, records, config):
                 result = model.predict(crop, imgsz=1024, conf=min(config["confidence_candidates"]),
                     iou=config["tile_nms_iou"], max_det=config["max_detections_per_tile"],
                     device=0, half=False, augment=False, classes=[0], verbose=False)[0]
+                ensure_finite(result.boxes.data, "predictions")
                 for left, top, right, bottom, confidence, _ in result.boxes.data.cpu().tolist():
                     box = [max(0., min(1., (left + x) / width)), max(0., min(1., (top + y) / height)),
                            max(0., min(1., (right + x) / width)), max(0., min(1., (bottom + y) / height)), confidence]
                     if box[2] > box[0] and box[3] > box[1]:
                         predictions.append(box)
         output[row["id"]] = predictions
+        if cached is not None:
+            write_json(cached, predictions)
         print(f"Full-image inference: {index + 1}/{len(records)}", flush=True)
     return output
 
@@ -76,37 +89,62 @@ def checkpoint_for(runs, variant, prepared, config_path):
     return checkpoint
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Select only on validation; evaluate the frozen winner once on held-out capture groups")
-    parser.add_argument("stage", choices=["select", "test"])
-    for name in ("source", "prepared", "runs", "output"):
-        parser.add_argument("--" + name, type=Path, required=True)
-    parser.add_argument("--config", type=Path, default=PACKAGE / "config.json")
-    args = parser.parse_args()
-    for key in ("source", "prepared", "runs", "output", "config"):
-        setattr(args, key, getattr(args, key).resolve())
-    config = load_config(args.config)
-    configure_runtime(args.output.parent / ".cache")
-    environment = cuda_environment()
-    verify_prepared(args.prepared, args.config, verify_tiles=False)
+def completed_stage(output, stage, recipe=None):
+    path = output / (stage + ".complete.json")
+    if not path.exists():
+        return False
+    done = read_json(path)
+    if recipe is not None and done["recipe"] != recipe:
+        raise ValueError("Completed evaluation belongs to a different experiment")
+    for filename, expected in done["outputs"].items():
+        if digest(output / filename) != expected:
+            raise ValueError(f"Completed evaluation output changed: {filename}")
+    return True
+
+
+def evaluate_stage(args, config, environment):
+    """Call under the stage lock; retries preserve the recipe, winner and source predictions."""
     rows = read_json(args.prepared / "catalog.json")
     split = "val" if args.stage == "select" else "test"
     records = [r for r in rows if r["eligible"] and r["split"] == split]
     if not records:
         raise ValueError("Empty evaluation split")
-    args.output.mkdir(parents=True, exist_ok=True)
-    lock = args.output / (args.stage + ".started.json")
-    # Exclusive creation prevents accidentally consuming test repeatedly or overwriting a selection.
-    with lock.open("x") as stream:
-        stream.write('{"status":"started"}\n')
     base = {"prepared_sha256": digest(args.prepared / "complete.json"), "config_sha256": digest(args.config),
             "environment": environment, "status": config["evaluation_status"], "code": code_fingerprint()}
+    recipe = {key: base[key] for key in ("prepared_sha256", "config_sha256", "code")}
+    # Complete all prerequisites before publishing a start record or reading test images.
+    if args.stage == "select":
+        checkpoints = {variant: checkpoint_for(args.runs, variant, args.prepared, args.config) for variant in config["variants"]}
+    else:
+        if not completed_stage(args.output, "select"):
+            raise ValueError("Validation selection must complete before test")
+        winner_path = args.output / "winner.json"
+        winner = read_json(winner_path)
+        if any(winner[k] != base[k] for k in ("prepared_sha256", "config_sha256", "code")):
+            raise ValueError("Winner belongs to a different experiment")
+        checkpoint = checkpoint_for(args.runs, winner["variant"], args.prepared, args.config)
+        if digest(checkpoint) != winner["checkpoint_sha256"]:
+            raise ValueError("Selected checkpoint changed")
+        checkpoints = {winner["variant"]: checkpoint}
+        recipe["winner_sha256"] = digest(winner_path)
+    recipe["checkpoints"] = {variant: digest(checkpoint) for variant, checkpoint in checkpoints.items()}
+    if completed_stage(args.output, args.stage, recipe):
+        print(f"Already completed and verified: {args.stage}", flush=True)
+        return
+    started = args.output / (args.stage + ".started.json")
+    if started.exists():
+        if read_json(started).get("recipe") != recipe:
+            raise ValueError("Evaluation start belongs to a different experiment; use a new output directory")
+    else:
+        write_json(started, {"recipe": recipe, "status": "started"})
+    outputs = []
     if args.stage == "select":
         candidates = []
         for variant in config["variants"]:
-            checkpoint = checkpoint_for(args.runs, variant, args.prepared, args.config)
-            predictions = predict_sources(checkpoint, args.source, records, config)
+            checkpoint = checkpoints[variant]
+            predictions = predict_sources(checkpoint, args.source, records, config, args.output / "cache" / ("val-" + variant))
             write_json(args.output / f"val-{variant}-predictions.json", predictions)
+            outputs.append(f"val-{variant}-predictions.json")
             for nms_iou in config["global_nms_candidates"]:
                 for confidence in config["confidence_candidates"]:
                     report = score(records, predictions, confidence, nms_iou, config)
@@ -119,20 +157,35 @@ def main():
         predictions = read_json(args.output / f"val-{winner['variant']}-predictions.json")
         write_json(args.output / "validation-report.json", {**base, **score(records, predictions, winner["confidence"], winner["nms_iou"], config)})
         write_json(args.output / "winner.json", {**base, **winner})
+        outputs.extend(["validation-candidates.json", "validation-report.json", "winner.json"])
         print(winner, flush=True)
     else:
-        winner_path = args.output / "winner.json"
-        winner = read_json(winner_path)
-        if any(winner[k] != base[k] for k in ("prepared_sha256", "config_sha256", "code")):
-            raise ValueError("Winner belongs to a different experiment")
-        checkpoint = checkpoint_for(args.runs, winner["variant"], args.prepared, args.config)
-        if digest(checkpoint) != winner["checkpoint_sha256"]:
-            raise ValueError("Selected checkpoint changed")
-        predictions = predict_sources(checkpoint, args.source, records, config)
+        predictions = predict_sources(checkpoint, args.source, records, config, args.output / "cache" / "test")
         write_json(args.output / "test-predictions.json", predictions)
         report = score(records, predictions, winner["confidence"], winner["nms_iou"], config)
         write_json(args.output / "test-report.json", {**base, "winner_sha256": digest(winner_path), **report})
+        outputs.extend(["test-predictions.json", "test-report.json"])
         print(report["overall"], flush=True)
+    write_json(args.output / (args.stage + ".complete.json"),
+               {"recipe": recipe, "outputs": {name: digest(args.output / name) for name in outputs}})
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Select only on validation; evaluate the frozen winner once on held-out capture groups")
+    parser.add_argument("stage", choices=["select", "test"])
+    for name in ("source", "prepared", "runs", "output"):
+        parser.add_argument("--" + name, type=Path, required=True)
+    parser.add_argument("--config", type=Path, default=PACKAGE / "config.json")
+    args = parser.parse_args()
+    for key in ("source", "prepared", "runs", "output", "config"):
+        setattr(args, key, getattr(args, key).resolve())
+    config = load_config(args.config)
+    configure_runtime(args.output.parent / ".cache")
+    # One output-level lock prevents selection/test from racing each other's manifests.
+    with exclusive_lock(args.output / ".evaluation.lock"):
+        environment = cuda_environment()
+        verify_prepared(args.prepared, args.config, verify_tiles=False)
+        evaluate_stage(args, config, environment)
 
 
 if __name__ == "__main__":

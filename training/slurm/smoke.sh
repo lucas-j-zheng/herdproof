@@ -9,5 +9,5 @@ set -euo pipefail
 source "${HERDPROOF_CODE:?}/training/slurm/common.sh"
 for variant in yolov8n yolov8s; do
     "$PYTHON" -m training.run --mode smoke --variant "$variant" --prepared "$HERDPROOF_PREPARED" \
-        --weights "${HERDPROOF_ROOT}/weights" --runs "$HERDPROOF_RUNS"
+        --weights "${HERDPROOF_ROOT}/weights" --runs "$HERDPROOF_RUNS" --resume-if-needed
 done

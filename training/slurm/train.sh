@@ -14,7 +14,8 @@ variant="${variants[${SLURM_ARRAY_TASK_ID:?}]}"
 for model in "${variants[@]}"; do
     test -f "${HERDPROOF_RUNS}/smoke-${model}/complete.json"
 done
-resume=()
+# Requeues and explicit resubmissions recover only matching, verified runs.
+resume=(--resume-if-needed)
 if [[ "${HERDPROOF_RESUME:-0}" == 1 ]]; then resume=(--resume); fi
 "$PYTHON" -m training.run --mode train --variant "$variant" --prepared "$HERDPROOF_PREPARED" \
     --weights "${HERDPROOF_ROOT}/weights" --runs "$HERDPROOF_RUNS" "${resume[@]}"
