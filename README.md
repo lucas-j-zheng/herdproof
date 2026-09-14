@@ -2,6 +2,10 @@
 
 Aerial cattle counting and evidence review for agricultural lending.
 
+**[Open the live demo →](https://herdproof-demo.vercel.app/)** · **[Explore the 3D field →](https://herdproof-demo.vercel.app/world/)**
+
+Try HerdProof in your browser—no local setup required.
+
 ## Hackathon demo
 
 The website includes interactive sample-photo review and an in-browser cattle
